@@ -45,7 +45,6 @@ definePageMeta({
 });
 
 const NuxtLink = resolveComponent('NuxtLink');
-
 const router = useRouter();
 
 const email = ref('');
