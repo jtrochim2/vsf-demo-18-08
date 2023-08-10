@@ -4724,9 +4724,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vsf/nuxt3-boilerplate@workspace:.":
+"@vsf/nuxt-sap@workspace:.":
   version: 0.0.0-use.local
-  resolution: "@vsf/nuxt3-boilerplate@workspace:."
+  resolution: "@vsf/nuxt-sap@workspace:."
   dependencies:
     "@commitlint/cli": ^13.2.1
     "@commitlint/config-conventional": ^13.2.0
