@@ -14,9 +14,12 @@ jobs:
 
       - name: Setup node
         uses: actions/setup-node@v3
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_DEFAULT_ENTERPRISE_TOKEN }}
         with:
           node-version-file: './.github/.node-version'
           cache: 'yarn'
+          registry-url: https://registrynpm.storefrontcloud.io
 
       - name: Build and publish docker image
         uses: elgohr/Publish-Docker-Github-Action@master
@@ -41,9 +44,12 @@ jobs:
 
       - name: Setup node
         uses: actions/setup-node@v3
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_DEFAULT_ENTERPRISE_TOKEN }}
         with:
           node-version-file: './.github/.node-version'
           cache: 'yarn'
+          registry-url: https://registrynpm.storefrontcloud.io
 
       - name: Build and publish docker image (middleware)
         uses: elgohr/Publish-Docker-Github-Action@master
