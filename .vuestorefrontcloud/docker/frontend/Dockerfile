@@ -6,7 +6,8 @@ COPY . .
 
 RUN apk add --no-cache libc6-compat
 
-RUN yarn install && yarn turbo run build --scope="web"
+RUN yarn install
+RUN yarn turbo run build --scope="web"
 
 COPY .vuestorefrontcloud/docker/frontend/vue-storefront.sh /usr/local/bin/
 
