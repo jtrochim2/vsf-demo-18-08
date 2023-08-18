@@ -13,9 +13,12 @@ jobs:
 
       - name: Setup node
         uses: actions/setup-node@v3
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_DEFAULT_ENTERPRISE_TOKEN }}
         with:
           node-version-file: './.github/.node-version'
           cache: 'yarn'
+          registry-url: https://registrynpm.storefrontcloud.io
 
       - name: Install dependencies
         run: yarn --frozen-lockfile

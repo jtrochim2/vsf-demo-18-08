@@ -18,7 +18,9 @@
     "test:cypress": "cypress run"
   },
   "dependencies": {
-    "@vue-storefront/sdk": "^1.0.1",
+    "@vsf-enterprise/contentful-sdk": "1.0.1",
+    "@vsf-enterprise/sapcc-sdk": "^1.1.0",
+    "@vue-storefront/sdk": "~1.0.1",
     "@vue-storefront/storefront-boilerplate-sdk": "~0.2.0",
     "@vueuse/core": "^10.3.0",
     "lodash-es": "^4.17.21"
