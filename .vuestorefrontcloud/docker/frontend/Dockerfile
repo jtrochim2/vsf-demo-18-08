@@ -1,5 +1,9 @@
 FROM node:20-alpine
 
+ARG NODE_AUTH_TOKEN
+
+ENV NODE_AUTH_TOKEN=${NODE_AUTH_TOKEN}
+
 WORKDIR /var/www
 
 COPY . .
