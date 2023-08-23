@@ -137,7 +137,7 @@ jobs:
         with:
           token: '${{ github.token }}'
           target_url: https://${{ vars.PROJECT_NAME }}.${{ vars.CLOUD_REGION }}.gcp.storefrontcloud.io
-          environment: production
+          environment: ${{ needs.configure-deployment.outputs.env }}
           initial_status: in_progress
 
       - name: Deploy on ${{ vars.PROJECT_NAME }}.${{ vars.CLOUD_REGION }}.gcp.storefrontcloud.io
