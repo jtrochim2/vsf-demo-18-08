@@ -4,6 +4,13 @@ export default defineNuxtConfig({
   typescript: {
     typeCheck: true,
   },
+  runtimeConfig: {
+    public: {
+      NUXT_PUBLIC_SDK_SAPCC_API_URL: process.env.NUXT_PUBLIC_SDK_SAPCC_API_URL ?? 'http://localhost:8181/sapcc',
+      NUXT_PUBLIC_SDK_SAPCC_SSR_API_URL: process.env.NUXT_PUBLIC_SDK_SAPCC_SSR_API_URL ?? 'http://localhost:8181/sapcc',
+      NUXT_PUBLIC_SDK_CNTF_API_URL: process.env.NUXT_PUBLIC_SDK_CNTF_API_URL ?? 'http://localhost:8181/cntf',
+    },
+  },
   app: {
     head: {
       viewport: 'minimum-scale=1, initial-scale=1, width=device-width',
@@ -38,6 +45,9 @@ export default defineNuxtConfig({
       sm: 640,
       xs: 376,
       '2xs': 360,
+    },
+    cloudinary: {
+      baseURL: process.env.NUXT_PUBLIC_CLOUDINARY_BASE_URL ?? 'https://res.cloudinary.com/vsf-sap/image/upload/',
     },
   },
   modules: [

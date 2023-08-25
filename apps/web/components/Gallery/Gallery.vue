@@ -18,7 +18,9 @@
           :key="`${alt}-${index}-thumbnail`"
           class="w-full h-full relative snap-center snap-always basis-full shrink-0 grow"
         >
+          <!-- TODO: replace src for :src="cloudinaryLoader(url)" when an image comes from SAP -->
           <NuxtImg
+            provider="cloudinary"
             :alt="alt ?? ''"
             :aria-hidden="activeIndex !== index"
             fit="fill"
@@ -30,7 +32,6 @@
             :loading="index !== 0 ? 'lazy' : undefined"
             :fetchpriority="index === 0 ? 'high' : undefined"
             :preload="index === 0"
-            format="webp"
             width="600"
             height="600"
           />
@@ -75,7 +76,9 @@
           @mouseover="onChangeIndex(index)"
           @focus="onChangeIndex(index)"
         >
+          <!-- TODO: replace src for :src="cloudinaryLoader(url)" when an image comes from SAP -->
           <NuxtImg
+            provider="cloudinary"
             alt=""
             class="object-contain"
             width="80"
@@ -83,7 +86,6 @@
             :src="url"
             :quality="80"
             loading="lazy"
-            format="webp"
           />
         </button>
 

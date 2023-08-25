@@ -14866,7 +14866,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"path-to-regexp@npm:^6.1.0":
+"path-to-regexp@npm:^6.1.0, path-to-regexp@npm:^6.2.1":
   version: 6.2.1
   resolution: "path-to-regexp@npm:6.2.1"
   checksum: f0227af8284ea13300f4293ba111e3635142f976d4197f14d5ad1f124aebd9118783dd2e5f1fe16f7273743cc3dbeddfb7493f237bb27c10fdae07020cc9b698
@@ -19629,6 +19629,7 @@ __metadata:
     lodash-es: ^4.17.21
     nuxt: ^3.6.5
     nuxt-vitest: ^0.10.1
+    path-to-regexp: ^6.2.1
     sass: ^1.64.1
     vitest: ^0.33.0
     vue-tsc: ^1.8.6

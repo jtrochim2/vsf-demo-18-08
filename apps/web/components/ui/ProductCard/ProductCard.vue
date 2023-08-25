@@ -2,7 +2,9 @@
   <div class="border border-neutral-200 rounded-md hover:shadow-lg flex-auto flex-shrink-0" data-testid="product-card">
     <div class="relative">
       <SfLink :tag="NuxtLink" :to="`${paths.product}${slug}`">
+        <!-- TODO: replace src for :src="cloudinaryLoader(imageUrl)" when an image comes from SAP -->
         <NuxtImg
+          provider="cloudinary"
           :src="imageUrl"
           :alt="imageAlt"
           class="object-cover rounded-md aspect-square w-full h-full"
@@ -12,7 +14,6 @@
           :loading="lazy && !priority ? 'lazy' : undefined"
           :fetchpriority="priority ? 'high' : undefined"
           :preload="priority"
-          format="webp"
         />
       </SfLink>
     </div>

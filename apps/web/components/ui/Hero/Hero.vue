@@ -2,14 +2,15 @@
   <div class="relative min-h-[600px] mb-10">
     <div class="md:flex md:flex-row-reverse md:justify-center min-h-[600px] max-w-screen-3xl mx-auto">
       <div class="flex flex-col justify-center md:basis-2/4 md:items-stretch md:overflow-hidden">
+        <!-- TODO: replace src for :src="cloudinaryLoader(image)" when an image comes from SAP -->
         <NuxtImg
+          provider="cloudinary"
           :src="image"
           alt="Hero"
           class="h-auto w-full object-cover object-left"
           width="764"
           height="600"
           fetchpriority="high"
-          format="webp"
           preload
         />
       </div>

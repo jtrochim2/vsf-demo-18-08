@@ -12,7 +12,8 @@
         <div
           class="relative h-[240px] w-[240px] rounded-full bg-neutral-100 group-hover:shadow-xl group-active:shadow-none"
         >
-          <NuxtImg :src="item.image" :alt="item.name" width="240" height="240" loading="lazy" format="webp" />
+          <!-- TODO: replace src for :src="cloudinaryLoader(item.image)" when an image comes from SAP -->
+          <NuxtImg provider="cloudinary" :src="item.image" :alt="item.name" width="240" height="240" loading="lazy" />
         </div>
         <div class="flex justify-center">
           <p

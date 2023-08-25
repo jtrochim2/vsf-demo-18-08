@@ -20,7 +20,8 @@
               <SfIconCreditCard class="mr-2" />
               <span class="font-medium">{{ $t('checkoutPayment.creditCard') }}</span>
             </span>
-            <NuxtImg v-else :src="imgSrc" :alt="imgAlt" width="104" height="32" />
+            <!-- TODO: replace src for :src="cloudinaryLoader(imgSrc)" when an image comes from SAP -->
+            <NuxtImg v-else provider="cloudinary" :src="imgSrc" :alt="imgAlt" width="104" height="32" />
             <span v-if="disabled" class="text-xs text-neutral-500">{{ $t('checkoutPayment.comingSoon') }}</span>
           </span>
         </label>

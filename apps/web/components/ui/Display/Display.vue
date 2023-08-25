@@ -29,14 +29,15 @@
             {{ item.buttonText }}
           </SfButton>
         </div>
+        <!-- TODO: replace src for :src="cloudinaryLoader(item.image)" when an image comes from SAP -->
         <NuxtImg
+          provider="cloudinary"
           :src="item.image"
           :alt="item.title"
           class="w-full md:w-1/2 self-end object-contain flex-1"
           width="300"
           height="300"
           loading="lazy"
-          format="webp"
         />
       </div>
     </div>
