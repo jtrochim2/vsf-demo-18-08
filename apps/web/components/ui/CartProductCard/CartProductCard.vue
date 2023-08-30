@@ -4,7 +4,7 @@
     data-testid="cart-product-card"
   >
     <div class="relative overflow-hidden rounded-md w-[100px] sm:w-[176px]">
-      <SfLink :tag="NuxtLink" :to="`${paths.product}${slug}`">
+      <SfLink :tag="NuxtLink" :to="`${paths.product}${code}`">
         <!-- TODO: replace src for :src="cloudinaryLoader(imageUrl)" when an image comes from SAP -->
         <NuxtImg
           provider="cloudinary"
@@ -24,7 +24,7 @@
     <div class="flex flex-col pl-4 min-w-[180px] flex-1">
       <SfLink
         :tag="NuxtLink"
-        :to="`${paths.product}${slug}`"
+        :to="`${paths.product}${code}`"
         variant="secondary"
         class="no-underline typography-text-sm sm:typography-text-lg"
       >
@@ -34,22 +34,13 @@
         <ul class="text-xs font-normal leading-5 sm:typography-text-sm text-neutral-700">
           <li v-for="attribute in attributes" :key="attribute.name">
             <span class="mr-1">{{ attribute.name }}:</span>
-            <span class="font-medium">{{ attribute.label }}</span>
+            <span class="font-medium">{{ attribute.value }}</span>
           </li>
         </ul>
       </div>
       <div class="items-start sm:items-center sm:mt-auto flex flex-col sm:flex-row">
-        <span
-          v-if="specialPrice"
-          class="text-secondary-700 sm:order-1 font-bold typography-text-sm sm:typography-text-lg sm:ml-auto"
-        >
-          ${{ specialPrice }}
-          <span class="text-neutral-500 ml-2 line-through typography-text-xs sm:typography-text-sm font-normal">
-            ${{ price }}
-          </span>
-        </span>
-        <span v-else class="font-bold sm:ml-auto sm:order-1 typography-text-sm sm:typography-text-lg">
-          ${{ price }}
+        <span class="font-bold sm:ml-auto sm:order-1 typography-text-sm sm:typography-text-lg">
+          {{ price.formattedValue }}
         </span>
         <UiQuantitySelector :min-value="minValue" :max-value="maxValue" class="mt-4 sm:mt-0" />
       </div>

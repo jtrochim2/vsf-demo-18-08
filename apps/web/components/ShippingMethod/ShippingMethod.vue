@@ -13,7 +13,7 @@
           @click="radioModel = id"
         >
           <div class="flex gap-2">
-            <SfRadio v-model="radioModel" :checked="cart?.shippingMethod?.id === id" :value="id" />
+            <SfRadio v-model="radioModel" :checked="false" :value="id" />
             <div>
               <p>{{ name }}</p>
               <p class="text-xs text-neutral-500">{{ estimatedDelivery }}</p>
@@ -36,6 +36,5 @@ import type { ShippingMethodProps } from '~/components/ShippingMethod/types';
 
 defineProps<ShippingMethodProps>();
 
-const { data: cart } = useCart();
-const radioModel = ref(cart.value?.shippingMethod?.id);
+const radioModel = ref('');
 </script>

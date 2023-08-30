@@ -16,7 +16,7 @@
         <div class="relative">
           <component :is="icon" />
           <SfBadge
-            v-if="label === 'cart'"
+            v-if="link === paths.cart && cartLineItemsCount > 0"
             :content="cartLineItemsCount"
             class="outline-white bg-white !text-neutral-900 translate-x-[5px] translate-y-[-3px]"
           />
@@ -57,7 +57,7 @@ const items = [
 ];
 
 const cartLineItemsCount = computed(
-  () => cart.value?.lineItems.reduce((total, { quantity }) => total + quantity, 0) ?? 0,
+  () => cart.value?.entries?.reduce((total, { quantity }) => (quantity ? total + quantity : total), 0) ?? 0,
 );
 const NuxtLink = resolveComponent('NuxtLink');
 </script>

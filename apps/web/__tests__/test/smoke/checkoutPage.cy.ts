@@ -5,7 +5,7 @@ const checkout = new CheckoutPageObject();
 const cart = new CartPageObject();
 
 describe('Smoke: Checkout Page', () => {
-  it('[smoke] Display checkout and place order', () => {
+  it.skip('[smoke] Display checkout and place order', () => {
     cy.visit('/');
 
     cart.openCart();

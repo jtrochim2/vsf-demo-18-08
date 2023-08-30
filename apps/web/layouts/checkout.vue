@@ -37,9 +37,7 @@
 <script setup lang="ts">
 import { SfButton, SfIconArrowBack, SfLoaderCircular } from '@storefront-ui/vue';
 
-const { fetchCard, data: cart, loading: isLoading } = useCart();
-
-fetchCard();
+const { data: cart, loading: isLoading } = useCart();
 
 defineProps<{
   backLabelDesktop: string;

@@ -1,18 +1,13 @@
-export interface Attribute {
-  label: string;
-  name: string;
-  value: string;
-}
+import type { Price, VariantOptionQualifier } from '@vsf-enterprise/sapcc-types';
 
 export type CartProductCardProps = {
-  attributes: Attribute[];
+  attributes: VariantOptionQualifier[];
   imageUrl?: string | null;
   imageAlt?: string | null;
   maxValue: number;
   minValue: number;
   name: string;
-  price: number;
-  specialPrice: number;
+  price: Price;
   value: number;
-  slug: string;
+  code: string;
 };

@@ -1,8 +1,10 @@
-import type { SfCart } from '@vue-storefront/unified-data-model';
+import type { Cart } from '@vsf-enterprise/sapcc-types';
 import { toRefs } from '@vueuse/shared';
+import Cookies from 'js-cookie';
 import type { UseCartReturn, UseCartState, FetchCard } from '~/composables/useCart/types';
 import { useSdk } from '~/sdk';
 
+const cookieCartId = 'vsf-cartId';
 /**
  * @description Composable for managing cart.
  * @returns {@link UseCartReturn}
@@ -13,6 +15,7 @@ export const useCart: UseCartReturn = () => {
   const state = useState<UseCartState>('useCart', () => ({
     data: null,
     loading: false,
+    isInitialized: false,
   }));
 
   /**
@@ -21,11 +24,20 @@ export const useCart: UseCartReturn = () => {
    * getCart();
    */
   const fetchCard: FetchCard = async () => {
+    const cartId = Cookies.get(cookieCartId);
     state.value.loading = true;
+
     try {
-      const { data, error } = await useAsyncData<SfCart>(() => useSdk().commerce.getCart());
+      const { data, error } = await useAsyncData<Cart>(() =>
+        cartId ? useSdk().sapcc.getCart({ cartId }) : useSdk().sapcc.createCart(),
+      );
+
       useHandleError(error.value);
       state.value.data = data.value;
+
+      // TODO [>=1.0.0]: For logged in users, we should use cart.code instead of cart.guid
+      Cookies.set(cookieCartId, data.value?.guid ?? '');
+
       return data;
     } catch (error) {
       throw new Error(error as string);
@@ -33,6 +45,15 @@ export const useCart: UseCartReturn = () => {
       state.value.loading = false;
     }
   };
+
+  onMounted(async () => {
+    if (!state.value.isInitialized) {
+      state.value.isInitialized = true;
+
+      await nextTick();
+      await fetchCard();
+    }
+  });
 
   return {
     fetchCard,

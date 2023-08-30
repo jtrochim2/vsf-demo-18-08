@@ -25,6 +25,7 @@
         <template #prefix>
           <SfIconShoppingCart />
           <SfBadge
+            v-if="cartLineItemsCount > 0"
             :content="cartLineItemsCount"
             class="outline outline-primary-700 bg-white !text-neutral-900 group-hover:outline-primary-800 group-active:outline-primary-900 flex justify-center"
             data-testid="cart-badge"
@@ -115,18 +116,18 @@ const { isOpen: isSearchModalOpen, open: searchModalOpen, close: searchModalClos
 
 defineProps<DefaultLayoutProps>();
 
-const { fetchCard, data: cart } = useCart();
+const { data: cart } = useCart();
 const { fetchCustomer, data: account } = useCustomer();
 
-fetchCard();
-fetchCustomer();
+onMounted(() => {
+  fetchCustomer();
+});
 usePageTitle();
 
 const NuxtLink = resolveComponent('NuxtLink');
 const cartLineItemsCount = computed(
-  () => cart.value?.lineItems.reduce((total, { quantity }) => total + quantity, 0) ?? 0,
+  () => cart.value?.entries?.reduce((total, { quantity }) => (quantity ? total + quantity : total), 0) ?? 0,
 );
-
 const accountDropdown = [
   {
     label: 'account.heading',
@@ -142,7 +143,7 @@ const accountDropdown = [
   },
   {
     label: 'account.logout',
-    link: '/',
+    link: paths.home,
   },
 ];
 </script>

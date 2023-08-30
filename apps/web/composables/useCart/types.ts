@@ -1,12 +1,13 @@
 import type { Ref } from 'vue';
-import type { SfCart, Maybe } from '@vue-storefront/unified-data-model';
+import type { Cart } from '@vsf-enterprise/sapcc-types';
 
 export interface UseCartState {
-  data: Maybe<SfCart>;
+  data: Cart | null;
   loading: boolean;
+  isInitialized: boolean;
 }
 
-export type FetchCard = () => Promise<Ref<Maybe<SfCart>>>;
+export type FetchCard = () => Promise<Ref<Cart | null>>;
 
 export interface UseCart {
   data: Readonly<Ref<UseCartState['data']>>;

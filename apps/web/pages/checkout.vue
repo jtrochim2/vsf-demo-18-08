@@ -15,7 +15,6 @@
           :heading="$t('billing.heading')"
           :description="$t('billing.description')"
           :button-text="$t('billing.addButton')"
-          :saved-address="cart.billingAddress"
           type="billingAddress"
         />
         <UiDivider class="w-screen md:w-auto -mx-4 md:mx-0" />
@@ -23,7 +22,6 @@
           :heading="$t('shipping.heading')"
           :description="$t('shipping.description')"
           :button-text="$t('shipping.addButton')"
-          :saved-address="cart.shippingAddress"
           type="shippingAddress"
         />
         <UiDivider class-name="w-screen md:w-auto -mx-4 md:mx-0" />
