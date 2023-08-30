@@ -17,7 +17,7 @@ const defaultError: ErrorParams = {
 export const useHandleError: UseHandleError = (error) => {
   if (error) {
     throw createError({
-      statusCode: error.status || defaultError.status,
+      statusCode: error.status ?? defaultError.status,
       message: error.message ?? defaultError.message,
       statusMessage: error.message ?? defaultError.statusMessage,
       fatal: true,

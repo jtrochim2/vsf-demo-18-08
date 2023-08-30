@@ -56,7 +56,7 @@ const login = () => {
   isLoading.value = true;
   // mimics waiting an async api call
   setTimeout(() => {
-    void router.push('/').then(() => (isLoading.value = false));
+    return router.push('/').then(() => (isLoading.value = false));
   }, 4000);
 };
 </script>
