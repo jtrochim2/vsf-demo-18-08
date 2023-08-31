@@ -1,12 +1,16 @@
+import type { Price } from '@vsf-enterprise/sapcc-types';
+
 export type ProductCardProps = {
-  name: string;
+  name?: string;
+  link: string;
   imageUrl: string;
   imageAlt?: string;
-  description?: string;
+  price?: Price;
   rating?: number;
   ratingCount?: number;
-  price?: number;
+  sku?: string;
   slug?: string;
+  showAddToCartButton?: boolean;
   priority?: boolean;
   lazy?: boolean;
 };

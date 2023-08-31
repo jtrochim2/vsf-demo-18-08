@@ -10,7 +10,7 @@
       <template #suffix>
         <SfIconExpandMore class="hidden lg:block" />
       </template>
-      <span class="hidden lg:flex whitespace-nowrap">{{ $t('allProductsLinkText') }}</span>
+      <span class="hidden lg:flex whitespace-nowrap">{{ $t('navbarButtonText') }}</span>
     </SfButton>
     <UiSearch class="hidden md:block flex-1" />
     <nav class="hidden md:flex md:flex-row md:flex-nowrap">

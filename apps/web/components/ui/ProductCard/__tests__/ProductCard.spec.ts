@@ -6,8 +6,11 @@ describe('<ProductCard />', () => {
     const { getByTestId } = mount(ProductCard, {
       props: {
         name: 'test',
-        price: 100,
+        price: {
+          formattedValue: '£1.23',
+        },
         imageUrl: '/images/product.webp',
+        link: '/'
       },
     });
 

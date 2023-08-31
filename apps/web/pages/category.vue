@@ -1,16 +1,15 @@
 <template>
   <NuxtLayout name="default" :breadcrumbs="breadcrumbs">
     <CategoryPageContent
-      v-if="productsCatalog"
       :title="$t('allProducts')"
-      :total-products="productsCatalog.pagination.totalResults"
-      :products="productsCatalog.products"
+      :total-products="productsCatalog?.pagination?.totalResults ?? 0"
+      :products="productsCatalog?.products"
     >
-      <template #sidebar>
+      <!-- <template #sidebar>
         <CategoryTree :categories="categories" :parent="{ name: $t('allProducts'), href: paths.category }" />
         <CategorySorting />
         <CategoryFilters :facets="productsCatalog.facets" />
-      </template>
+      </template> -->
     </CategoryPageContent>
   </NuxtLayout>
 </template>
@@ -22,22 +21,24 @@ definePageMeta({
   layout: false,
 });
 
-const { fetchProducts, data: productsCatalog } = useProducts();
+const config = useRuntimeConfig();
+const { fetchProducts, data: productsCatalog } = useSearchProducts();
 const { t } = useI18n();
-
-await fetchProducts();
+const pageSize = Number(config.public.NUXT_PUBLIC_CATEGORY_ITEMS_PER_PAGE);
 
 const breadcrumbs: Breadcrumb[] = [
   { name: t('home'), link: '/' },
   { name: t('allProducts'), link: '/category' },
 ];
-const subCategories = productsCatalog.value?.subCategories;
-const categories = computed(
-  () =>
-    subCategories?.map(({ name, productCount }) => ({
-      name,
-      count: productCount || undefined,
-      href: paths.category,
-    })) || [],
-);
+
+onMounted(async () => await fetchProducts({ pageSize }));
+// const subCategories = productsCatalog.value?.subCategories;
+// const categories = computed(
+//   () =>
+//     subCategories?.map(({ name, productCount }) => ({
+//       name,
+//       count: productCount || undefined,
+//       href: paths.category,
+//     })) || [],
+// );
 </script>

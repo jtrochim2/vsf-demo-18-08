@@ -5,7 +5,7 @@
     :wrapper-class="wrapperClass"
     data-testid="product-slider"
   >
-    <UiProductCard
+    <!-- <UiProductCard
       v-for="product in items"
       :key="product.id"
       class="max-w-[192px]"
@@ -16,7 +16,7 @@
       :price="product.price?.value.amount"
       :rating-count="product.rating?.count"
       :rating="product.rating?.average"
-    />
+    /> -->
   </SfScrollable>
 </template>
 

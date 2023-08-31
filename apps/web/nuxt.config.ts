@@ -9,6 +9,7 @@ export default defineNuxtConfig({
       NUXT_PUBLIC_SDK_SAPCC_API_URL: process.env.NUXT_PUBLIC_SDK_SAPCC_API_URL ?? 'http://localhost:8181/sapcc',
       NUXT_PUBLIC_SDK_SAPCC_SSR_API_URL: process.env.NUXT_PUBLIC_SDK_SAPCC_SSR_API_URL ?? 'http://localhost:8181/sapcc',
       NUXT_PUBLIC_SDK_CNTF_API_URL: process.env.NUXT_PUBLIC_SDK_CNTF_API_URL ?? 'http://localhost:8181/cntf',
+      NUXT_PUBLIC_CATEGORY_ITEMS_PER_PAGE: process.env.NUXT_PUBLIC_CATEGORY_ITEMS_PER_PAGE ?? '24',
     },
   },
   app: {

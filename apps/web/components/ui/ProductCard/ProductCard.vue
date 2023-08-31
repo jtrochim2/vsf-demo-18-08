@@ -1,11 +1,13 @@
 <template>
-  <div class="border border-neutral-200 rounded-md hover:shadow-lg flex-auto flex-shrink-0" data-testid="product-card">
+  <div
+    class="border border-neutral-200 rounded-md hover:shadow-lg flex flex-col flex-auto flex-shrink-0"
+    data-testid="product-card"
+  >
     <div class="relative">
       <SfLink :tag="NuxtLink" :to="`${paths.product}${slug}`">
-        <!-- TODO: replace src for :src="cloudinaryLoader(imageUrl)" when an image comes from SAP -->
         <NuxtImg
           provider="cloudinary"
-          :src="imageUrl"
+          :src="cloudinaryLoader(imageUrl)"
           :alt="imageAlt"
           class="object-cover rounded-md aspect-square w-full h-full"
           data-testid="image-slot"
@@ -17,27 +19,30 @@
         />
       </SfLink>
     </div>
-    <div class="p-2 border-t border-neutral-200 typography-text-sm">
-      <SfLink :tag="NuxtLink" :to="`${paths.product}${slug}`" class="no-underline" variant="secondary">
-        {{ name }}
+    <div class="flex flex-col p-2 border-t border-neutral-200 flex-grow">
+      <SfLink
+        :tag="NuxtLink"
+        :to="`${paths.product}${slug}`"
+        class="no-underline typography-text-sm md:typography-text-base"
+        variant="secondary"
+      >
+        {{ removeHtmlTags(name) }}
       </SfLink>
-      <div class="flex items-center pt-1">
+      <div v-if="rating" class="flex items-center pt-1">
         <SfRating size="xs" :value="rating ?? 0" :max="5" />
-        <SfLink to="#" variant="secondary" :tag="NuxtLink" class="ml-1 no-underline">
+        <SfLink v-if="ratingCount" to="#" variant="secondary" :tag="NuxtLink" class="ml-1 no-underline">
           <SfCounter size="xs">{{ ratingCount }}</SfCounter>
         </SfLink>
       </div>
-      <p class="block py-2 font-normal typography-text-xs text-neutral-700 text-justify">
-        {{ description }}
-      </p>
-      <span class="block pb-2 font-bold typography-text-sm" data-testid="product-card-vertical-price">
-        ${{ price }}
+      <span class="block pb-2 font-bold typography-headline-4 mt-2" data-testid="product-card-vertical-price">
+        {{ price?.formattedValue }}
       </span>
-      <SfButton type="button" size="sm">
+      <SfButton type="button" class="mt-auto w-fit">
         <template #prefix>
           <SfIconShoppingCart size="sm" />
         </template>
-        {{ $t('addToCartShort') }}
+        <span class="md:hidden">{{ $t('addToCartShort') }}</span>
+        <span class="max-md:hidden">{{ $t('addToCart') }}</span>
       </SfButton>
     </div>
   </div>
@@ -53,4 +58,6 @@ withDefaults(defineProps<ProductCardProps>(), {
 });
 
 const NuxtLink = resolveComponent('NuxtLink');
+
+const removeHtmlTags = (html?: string) => html?.replace(/<.*?>/g, '');
 </script>

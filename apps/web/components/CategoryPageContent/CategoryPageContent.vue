@@ -19,20 +19,20 @@
             </SfButton>
           </div>
           <section
-            v-if="products"
+            v-if="products?.length !== 0"
             class="grid grid-cols-1 2xs:grid-cols-2 gap-4 md:gap-6 md:grid-cols-2 lg:grid-cols-3 3xl:grid-cols-4 mb-10 md:mb-5"
             data-testid="category-grid"
           >
             <UiProductCard
-              v-for="({ id, name, rating, price, primaryImage, slug }, index) in products"
-              :key="id"
+              v-for="({ code, name, averageRating, price, images, url }, index) in products"
+              :key="code"
               :name="name ?? ''"
-              :rating-count="rating?.count"
-              :rating="rating?.average"
-              :price="price?.value.amount"
-              :image-url="primaryImage?.url ?? ''"
-              :image-alt="primaryImage?.alt ?? ''"
-              :slug="slug"
+              :rating="averageRating"
+              :link="url ?? ''"
+              :price="price"
+              :image-url="images?.find((image) => image.format === 'product')?.url ?? ''"
+              :image-alt="images?.find((image) => image.format === 'product')?.altText ?? ''"
+              :slug="code"
               :priority="index === 0"
             />
           </section>
