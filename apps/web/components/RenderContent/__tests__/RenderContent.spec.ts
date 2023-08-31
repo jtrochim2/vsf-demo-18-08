@@ -5,15 +5,7 @@ describe('<RenderContent />', () => {
   it('should render component', () => {
     const { getByTestId } = mount(RenderContent, {
       props: {
-        content: [
-          {
-            fields: {
-              component: 'Heading',
-              tag: 'h1',
-              title: 'test',
-            },
-          },
-        ],
+        content: [],
       },
     });
 

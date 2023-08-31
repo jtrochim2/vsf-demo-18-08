@@ -5,6 +5,7 @@
     :wrapper-class="wrapperClass"
     data-testid="product-slider"
   >
+    <div v-for="{ product } in items" :key="product">{{ product }}</div>
     <!-- <UiProductCard
       v-for="product in items"
       :key="product.id"
@@ -22,7 +23,7 @@
 
 <script setup lang="ts">
 import { SfScrollable } from '@storefront-ui/vue';
-import type { ProductSliderProps } from '~/components/ProductSlider/types';
+import type { ProductSliderProps } from '~/components/ui/ProductSlider/types';
 
 defineProps<ProductSliderProps>();
 </script>

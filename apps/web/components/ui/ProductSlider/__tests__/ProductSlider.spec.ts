@@ -1,5 +1,5 @@
 import { mount } from '@vue/test-utils';
-import ProductSlider from '~/components/ProductSlider/ProductSlider.vue';
+import ProductSlider from '~/components/ui/ProductSlider/ProductSlider.vue';
 
 describe('<ProductSlider />', () => {
   it('should render component', () => {

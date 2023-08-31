@@ -1,27 +1,17 @@
 import type { Ref } from 'vue';
+import type { GetContentParams } from '@vsf-enterprise/contentful-sdk';
 import type { Maybe } from '@vue-storefront/unified-data-model';
-import type { HeadingProps } from '~/components/Heading/types';
-import type { ProductSliderProps } from '~/components/ProductSlider/types';
-import type { CategoryCardProps } from '~/components/ui/CategoryCard/types';
-import type { DisplayProps } from '~/components/ui/Display/types';
-import type { HeroProps } from '~/components/ui/Hero/types';
+import type { DynamicContentFields, EntryFields } from '~/helpers/cms/types';
 
-type EntryFields<TFields> = Array<{
-  fields: TFields;
-}>;
+export enum ComponentNames {
+  Hero = 'Hero',
+  Card = 'Card',
+  Heading = 'Heading',
+  Display = 'Display',
+  ProductSlider = 'ProductSlider',
+}
 
-type WithComponentField<TProps, TComponent> = TProps & {
-  component: TComponent;
-};
-
-export type DynamicContentFields =
-  | WithComponentField<HeroProps, 'Hero'>
-  | WithComponentField<CategoryCardProps, 'Card'>
-  | WithComponentField<HeadingProps, 'Heading'>
-  | WithComponentField<DisplayProps, 'Display'>
-  | WithComponentField<ProductSliderProps, 'ProductSlider'>;
-
-export interface ContentDynamicPage {
+export interface ContentfulDynamicPage {
   component: 'Page';
   content: EntryFields<DynamicContentFields>;
   name: string;
@@ -29,11 +19,11 @@ export interface ContentDynamicPage {
 }
 
 export interface UseContentState {
-  data: Maybe<EntryFields<ContentDynamicPage>>;
+  data: Maybe<EntryFields<ContentfulDynamicPage>>;
   loading: boolean;
 }
 
-export type GetContent = () => Promise<Ref<Maybe<EntryFields<ContentDynamicPage>>>>;
+export type GetContent = () => Promise<Ref<Maybe<EntryFields<GetContentParams>>>>;
 
 export interface UseContent {
   data: Readonly<Ref<UseContentState['data']>>;
@@ -41,4 +31,4 @@ export interface UseContent {
   getContent: GetContent;
 }
 
-export type UseContentReturn = (url: string) => UseContent;
+export type UseContentReturn = (params: GetContentParams) => UseContent;

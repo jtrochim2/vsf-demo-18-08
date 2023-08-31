@@ -1,5 +1,5 @@
-import type { ContentDynamicPage } from '~/composables/useContent/types';
+import type { ContentfulDynamicPage } from '~/composables/useContent/types';
 
 export type RenderContentProps = {
-  content: ContentDynamicPage['content'];
+  content: ContentfulDynamicPage['content'];
 };

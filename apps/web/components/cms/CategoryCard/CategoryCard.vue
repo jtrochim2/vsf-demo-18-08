@@ -5,15 +5,21 @@
   >
     <div v-for="item in items" :key="item.name" class="mr-2 md:mr-6 group">
       <NuxtLink
-        :to="item.slug"
+        :to="`${paths.category}/${item.categoryId}`"
         class="w-full h-full z-1 focus-visible:outline focus-visible:outline-offset focus-visible:rounded-md"
         :aria-label="item.name"
       >
         <div
           class="relative h-[240px] w-[240px] rounded-full bg-neutral-100 group-hover:shadow-xl group-active:shadow-none"
         >
-          <!-- TODO: replace src for :src="cloudinaryLoader(item.image)" when an image comes from SAP -->
-          <NuxtImg provider="cloudinary" :src="item.image" :alt="item.name" width="240" height="240" loading="lazy" />
+          <NuxtImg
+            :src="item.image.url ? `https:${item.image.url}` : '/images/card-placeholder-rounded.png'"
+            :alt="item.image.alt ?? $t('cardImagePlaceholder')"
+            width="240"
+            height="240"
+            loading="lazy"
+            format="webp"
+          />
         </div>
         <div class="flex justify-center">
           <p
@@ -28,7 +34,7 @@
 </template>
 
 <script setup lang="ts">
-import type { CategoryCardProps } from '~/components/ui/CategoryCard/types';
+import type { CategoryCardProps } from '~/components/cms/CategoryCard/types';
 
 defineProps<CategoryCardProps>();
 </script>

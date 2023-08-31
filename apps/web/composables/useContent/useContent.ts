@@ -6,10 +6,10 @@ import type { UseContentReturn, UseContentState, GetContent } from './types';
  * @param url Parameter of the content to fetch.
  * @returns {@link UseContent}
  * @example
- * const { data, loading, getContent } = useContent<ContentFieldsType>('url');
+ * const { data, loading, getContent } = useContent<ContentFieldsType>(GetContentParams);
  */
-export const useContent: UseContentReturn = (url) => {
-  const state = useState<UseContentState>(`content-${url}`, () => ({
+export const useContent: UseContentReturn = (params) => {
+  const state = useState<UseContentState>(`content-${params.custom?.value}`, () => ({
     data: null,
     loading: false,
   }));
@@ -22,7 +22,7 @@ export const useContent: UseContentReturn = (url) => {
   const getContent: GetContent = async () => {
     state.value.loading = true;
     try {
-      const { data, error } = await useAsyncData(() => useSdk().commerce.getContent({ url }));
+      const { data, error } = await useAsyncData(() => useSdk().contentful.getContent(params));
       useHandleError(error.value);
       state.value.data = data.value;
       return data;
