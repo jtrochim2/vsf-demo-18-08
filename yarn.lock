@@ -5219,12 +5219,33 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@vueuse/router@npm:^10.4.1":
+  version: 10.4.1
+  resolution: "@vueuse/router@npm:10.4.1"
+  dependencies:
+    "@vueuse/shared": 10.4.1
+    vue-demi: ">=0.14.5"
+  peerDependencies:
+    vue-router: ">=4.0.0-rc.1"
+  checksum: 531b29416bab9ed10f536e7176ba884a0fc586105ea8a05511b915d5cc4dde84093d57eccab3639d05325831623600e8bc83a19174419a98c8d8d87218f3572e
+  languageName: node
+  linkType: hard
+
 "@vueuse/shared@npm:10.3.0":
   version: 10.3.0
   resolution: "@vueuse/shared@npm:10.3.0"
   dependencies:
     vue-demi: ">=0.14.5"
   checksum: 2392ce5c798ff2aa09c82de11fef3a6cc1eb3d198598e0f19f803645003003e06c90bc4cde5367200f8458a31344edcd4ab571b84a4f7d21ee8083b9309c9bf3
+  languageName: node
+  linkType: hard
+
+"@vueuse/shared@npm:10.4.1":
+  version: 10.4.1
+  resolution: "@vueuse/shared@npm:10.4.1"
+  dependencies:
+    vue-demi: ">=0.14.5"
+  checksum: e1cc0b970e0ce06c8bc2cbed3ce37a9ee7ff0667fc3f354398b4201259db1848da428d62c9ea19c3124f5eb80ce0b3f97328f537e3238ec68cdbb726ff3e3fe8
   languageName: node
   linkType: hard
 
@@ -19634,6 +19655,7 @@ __metadata:
     "@vue-storefront/unified-data-model": ^0.6.0
     "@vue/test-utils": ^2.4.0
     "@vueuse/core": ^10.3.0
+    "@vueuse/router": ^10.4.1
     happy-dom: ^9.20.3
     js-cookie: ^3.0.5
     lodash-es: ^4.17.21
