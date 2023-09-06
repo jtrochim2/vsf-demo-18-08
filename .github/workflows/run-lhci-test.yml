@@ -36,3 +36,19 @@ jobs:
         run: yarn lhci:mobile
         env:
           LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
+          CNTF_SPACE: ${{ vars.CNTF_SPACE }}
+          CNTF_TOKEN: ${{ secrets.CNTF_TOKEN }}
+          CNTF_BRANCH: ${{ vars.CNTF_BRANCH }}
+          SAPCC_OAUTH_URI: ${{ vars.SAPCC_OAUTH_URI }}
+          SAPCC_OAUTH_CLIENT_ID: ${{ vars.SAPCC_OAUTH_CLIENT_ID }}
+          SAPCC_OAUTH_CLIENT_SECRET: ${{ secrets.SAPCC_OAUTH_CLIENT_SECRET }}
+          SAPCC_OAUTH_TOKEN_ENDPOINT: ${{ vars.SAPCC_OAUTH_TOKEN_ENDPOINT }}
+          SAPCC_OAUTH_TOKEN_REVOKE_ENDPOINT: ${{ vars.SAPCC_OAUTH_TOKEN_REVOKE_ENDPOINT }}
+          SAPCC_API_URI: ${{ vars.SAPCC_API_URI }}
+          SAPCC_MEDIA_HOST: ${{ vars.SAPCC_MEDIA_HOST }}
+          DEFAULT_BASE_SITE_ID: ${{ vars.DEFAULT_BASE_SITE_ID }}
+          DEFAULT_CATALOG_ID: ${{ vars.DEFAULT_CATALOG_ID }}
+          DEFAULT_CATALOG_VERSION: ${{ vars.DEFAULT_CATALOG_VERSION }}
+          DEFAULT_LANGUAGE: ${{ vars.DEFAULT_LANGUAGE }}
+          DEFAULT_CURRENCY: ${{ vars.DEFAULT_CURRENCY }}
+          NUXT_PUBLIC_CLOUDINARY_CMS_URL: ${{ vars.NUXT_PUBLIC_CLOUDINARY_CMS_URL }}
