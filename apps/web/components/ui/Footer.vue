@@ -2,10 +2,10 @@
   <footer class="pt-10 bg-neutral-100 mb-[58px] md:mb-0" data-testid="footer">
     <div
       class="grid justify-center grid-cols-[1fr_1fr] md:grid-cols-[repeat(4,1fr)] px-4 md:px-6 pb-10 max-w-screen-3xl mx-auto"
-      data-testid="section-top"
+      data-testid="footer"
     >
       <div v-for="{ key, subcategories } in categories" :key="key" class="min-w-[25%] xs:min-w-[50%] flex flex-col">
-        <div class="ml-4 text-lg font-medium leading-7 text-neutral-900 font-body">
+        <div class="ml-4 text-lg font-medium leading-7 text-neutral-900 font-body" data-testid="footer-headers">
           {{ $t(`categories.${key}.label`) }}
         </div>
         <SfListItem

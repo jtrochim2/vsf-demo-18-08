@@ -3,6 +3,7 @@
     <SfButton
       class="!px-2 mr-auto hidden lg:flex text-white hover:text-white active:text-white hover:bg-primary-800 active:bg-primary-900"
       type="button"
+      data-testid="category-index-link"
       variant="tertiary"
       :tag="NuxtLink"
       :to="paths.category"

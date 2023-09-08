@@ -22,7 +22,7 @@
       v-else-if="component.fields.component === ComponentNames.Display"
       v-bind="toDisplayProps(component.fields)"
       :key="`${ComponentNames.Display}-${index}`"
-      :data-testid="`render-content-${component.fields.component}`"
+      data-testid="banners"
     />
     <CmsProductSlider
       v-else-if="component.fields.component === ComponentNames.ProductSlider"
