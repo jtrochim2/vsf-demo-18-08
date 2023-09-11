@@ -1,7 +1,7 @@
 import type { Cart } from '@vsf-enterprise/sapcc-types';
 import { toRefs } from '@vueuse/shared';
 import Cookies from 'js-cookie';
-import type { UseCartReturn, UseCartState, FetchCard } from '~/composables/useCart/types';
+import type { UseCartReturn, UseCartState, FetchCart } from '~/composables/useCart/types';
 import { useSdk } from '~/sdk';
 
 const cookieCartId = 'vsf-cartId';
@@ -21,9 +21,9 @@ export const useCart: UseCartReturn = () => {
   /**
    * @description Function for fetching the cart.
    * @example
-   * getCart();
+   * fetchCart();
    */
-  const fetchCard: FetchCard = async () => {
+  const fetchCart: FetchCart = async () => {
     const cartId = Cookies.get(cookieCartId);
     state.value.loading = true;
 
@@ -51,12 +51,12 @@ export const useCart: UseCartReturn = () => {
       state.value.isInitialized = true;
 
       await nextTick();
-      await fetchCard();
+      await fetchCart();
     }
   });
 
   return {
-    fetchCard,
+    fetchCart,
     ...toRefs(state.value),
   };
 };

@@ -7,12 +7,12 @@ export interface UseCartState {
   isInitialized: boolean;
 }
 
-export type FetchCard = () => Promise<Ref<Cart | null>>;
+export type FetchCart = () => Promise<Ref<Cart | null>>;
 
 export interface UseCart {
   data: Readonly<Ref<UseCartState['data']>>;
   loading: Readonly<Ref<boolean>>;
-  fetchCard: FetchCard;
+  fetchCart: FetchCart;
 }
 
 export type UseCartReturn = () => UseCart;
