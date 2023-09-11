@@ -1,6 +1,6 @@
 import { SfButtonSize, SfButtonVariant } from '@storefront-ui/shared';
 import type { Image } from '@vsf-enterprise/contentful-sdk';
-import { DisplayDirection } from 'components/cms/Display/types';
+import { DisplayDirection } from '~/components/cms/Display/types';
 import { HeroDirection } from '~/components/cms/Hero/types';
 
 export type EntryFields<TFields> = Array<{
