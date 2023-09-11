@@ -74,9 +74,15 @@
 </template>
 
 <script setup lang="ts">
-import { SfIconBase, SfIconPerson, SfIconShoppingCart, SfListItem, SfButton, SfIconArrowBack } from '@storefront-ui/vue';
+import {
+  SfIconBase,
+  SfIconPerson,
+  SfIconShoppingCart,
+  SfListItem,
+  SfButton,
+  SfIconArrowBack,
+} from '@storefront-ui/vue';
 import { useMediaQuery } from '@vueuse/core';
-
 
 const isTabletScreen = useMediaQuery(mediaQueries.tablet);
 const { t } = useI18n();
