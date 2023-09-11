@@ -81,9 +81,6 @@ export default defineNuxtConfig({
     'nuxt-vitest',
   ],
   nitro: {
-    prerender: {
-      crawlLinks: true,
-    },
     compressPublicAssets: true,
   },
   routeRules: {
