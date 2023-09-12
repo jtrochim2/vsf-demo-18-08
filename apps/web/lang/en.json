@@ -59,10 +59,12 @@
   "allProducts": "All products",
   "sortBy": "Sort by",
   "sortType": {
-    "latest": "Latest",
-    "priceUp": "Price from low to high",
-    "priceDown": "Price from high to low",
-    "relevance": "Relevance"
+    "relevance": "Relevance",
+    "topRated": "Top Rated",
+    "name-asc": "Name (ascending)",
+    "name-desc": "Name (descending)",
+    "price-asc": "Price (lowest first)",
+    "price-desc": "Price (highest first)"
   },
   "numberOfProducts": "1 Product | {count} Products",
   "prev": "Previous",

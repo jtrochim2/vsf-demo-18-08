@@ -6,9 +6,9 @@
     <div class="relative">
       <SfLink :tag="NuxtLink" :to="`${paths.product}${slug}`">
         <NuxtImg
-          provider="cloudinary"
-          :src="cloudinaryLoader(imageUrl)"
-          :alt="imageAlt"
+          :provider="imageUrl ? 'cloudinary' : undefined"
+          :src="imageUrl ? cloudinaryLoader(imageUrl) : '/images/card-placeholder.png'"
+          :alt="imageAlt || ''"
           class="object-cover rounded-md aspect-square w-full h-full"
           data-testid="image-slot"
           width="190"

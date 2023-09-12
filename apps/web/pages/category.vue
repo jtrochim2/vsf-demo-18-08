@@ -6,11 +6,15 @@
       :products="productsCatalog?.products"
       :show-empty-state="!productsCatalog?.pagination?.totalResults"
     >
-      <!-- <template #sidebar>
-        <CategoryTree :categories="categories" :parent="{ name: $t('allProducts'), href: paths.category }" />
-        <CategorySorting />
-        <CategoryFilters :facets="productsCatalog.facets" />
-      </template> -->
+      <template #sidebar>
+        <!-- <CategoryTree :categories="categories" :parent="{ name: $t('allProducts'), href: paths.category }" /> -->
+        <CategorySorting
+          :options="productsCatalog?.sorts"
+          :selected-option="sort ?? ''"
+          @on-change="(selectedValue) => (sortOption = selectedValue)"
+        />
+        <!-- <CategoryFilters :facets="productsCatalog.facets" /> -->
+      </template>
       <template #emptyState>
         <LazyCategoryEmptyState />
       </template>
@@ -25,17 +29,23 @@ definePageMeta({
   layout: false,
 });
 
-const config = useRuntimeConfig();
 const { fetchProducts, data: productsCatalog } = useSearchProducts();
+const { pageSize, sort } = useProductSearchParams();
 const { t } = useI18n();
-const pageSize = Number(config.public.NUXT_PUBLIC_CATEGORY_ITEMS_PER_PAGE);
-
 const breadcrumbs: Breadcrumb[] = [
   { name: t('home'), link: '/' },
   { name: t('allProducts'), link: '/category' },
 ];
+const sortOption = ref(sort.value);
 
-await fetchProducts({ pageSize });
+await fetchProducts({ pageSize: pageSize.value, sort: sortOption.value });
+
+watch(sortOption, (changedSortOption) => {
+  if (changedSortOption) {
+    sort.value = sortOption.value;
+    fetchProducts({ pageSize: pageSize.value, sort: sortOption.value });
+  }
+});
 // const subCategories = productsCatalog.value?.subCategories;
 // const categories = computed(
 //   () =>
