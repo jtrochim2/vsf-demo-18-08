@@ -42,7 +42,8 @@
           </template>
           <UiPagination
             v-if="totalProducts > itemsPerPage"
-            :current-page="1"
+            @update:current-page="$emit('update:currentPage', $event)"
+            :current-page="currentPage + 1"
             :total-items="totalProducts"
             :page-size="itemsPerPage"
             :max-visible-pages="maxVisiblePages"
@@ -58,27 +59,30 @@
 
 <script setup lang="ts">
 import { SfButton, SfIconTune, useDisclosure } from '@storefront-ui/vue';
-import { useMediaQuery } from '@vueuse/core';
+import { whenever } from '@vueuse/core';
 import type { CategoryPageContentProps } from '~/components/CategoryPageContent/types';
 
-withDefaults(defineProps<CategoryPageContentProps>(), {
+const {
+  public: { NUXT_PUBLIC_MAX_VISIBLE_CATEGORIES },
+} = useRuntimeConfig();
+
+const props = withDefaults(defineProps<CategoryPageContentProps>(), {
   itemsPerPage: 24,
   showEmptyState: false,
   showSimpleEmptyState: false,
 });
+defineEmits<(e: 'update:currentPage', currentPage: number) => number>();
 
 const { isOpen, open, close } = useDisclosure();
-const isTabletScreen = useMediaQuery(mediaQueries.tablet);
-const isWideScreen = useMediaQuery(mediaQueries.desktop);
-const maxVisiblePages = ref(1);
+const { isTablet, isDesktop } = useBreakpoints();
+const maxVisiblePages = computed(() => (isDesktop.value ? Number(NUXT_PUBLIC_MAX_VISIBLE_CATEGORIES) : 1));
 
-const setMaxVisiblePages = (isWide: boolean) => (maxVisiblePages.value = isWide ? 5 : 1);
+if (!import.meta.env.SSR) {
+  watch(
+    () => props.currentPage,
+    () => (document.documentElement.scrollTop = 0),
+  );
+}
 
-watch(isWideScreen, (value) => setMaxVisiblePages(value));
-onMounted(() => setMaxVisiblePages(isWideScreen.value));
-watch(isTabletScreen, (value) => {
-  if (value && isOpen.value) {
-    close();
-  }
-});
+whenever(isTablet, close);
 </script>

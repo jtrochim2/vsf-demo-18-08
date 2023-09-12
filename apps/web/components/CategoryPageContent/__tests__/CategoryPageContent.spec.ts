@@ -10,6 +10,7 @@ describe('<CategoryPageContent />', () => {
         totalProducts: totalProductsMock,
         products: productsMock,
         itemsPerPage: 24,
+        currentPage: 1,
       },
     });
 
@@ -23,6 +24,7 @@ describe('<CategoryPageContent />', () => {
         totalProducts: totalProductsMock,
         products: productsMock,
         itemsPerPage: 24,
+        currentPage: 1,
       },
     });
 
@@ -37,6 +39,7 @@ describe('<CategoryPageContent />', () => {
         products: [],
         itemsPerPage: 24,
         showEmptyState: true,
+        currentPage: 1,
       },
     });
 
@@ -54,6 +57,7 @@ describe('<CategoryPageContent />', () => {
         products: [],
         itemsPerPage: 24,
         showSimpleEmptyState: true,
+        currentPage: 1,
       },
     });
 
@@ -70,6 +74,7 @@ describe('<CategoryPageContent />', () => {
         totalProducts: totalProductsMock,
         products: productsMock,
         itemsPerPage: 24,
+        currentPage: 1,
       },
     });
 
@@ -83,6 +88,7 @@ describe('<CategoryPageContent />', () => {
         totalProducts: totalProductsMock,
         products: productsMock,
         itemsPerPage: 24,
+        currentPage: 1,
       },
     });
 

@@ -138,6 +138,7 @@ import { SfButton, SfIconChevronLeft, SfIconChevronRight, usePagination } from '
 import { PaginationProps } from '~/components/ui/Pagination/types';
 
 const props = defineProps<PaginationProps>();
+const emit = defineEmits<(e: 'update:currentPage', currentPage: number) => void>();
 const { currentPage, pageSize, totalItems, maxVisiblePages: maxVisiblePagesProperty } = toRefs(props);
 
 const pagination = computed(() =>
@@ -149,5 +150,9 @@ const pagination = computed(() =>
       maxPages: maxVisiblePagesProperty.value,
     }),
   ),
+);
+watch(
+  () => pagination.value.selectedPage,
+  (selectedPage) => currentPage.value !== selectedPage && emit('update:currentPage', selectedPage),
 );
 </script>

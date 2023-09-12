@@ -2,7 +2,7 @@
   <NuxtLayout name="default" :breadcrumbs="breadcrumbs">
     <NarrowContainer>
       <div class="mb-20 px-4 md:px-0" data-testid="account-layout">
-        <h1 v-if="isRoot || isTabletScreen" class="my-10 font-bold typography-headline-3 md:typography-headline-2">
+        <h1 v-if="isRoot || isTablet" class="my-10 font-bold typography-headline-3 md:typography-headline-2">
           {{ $t('account.heading') }}
         </h1>
         <div v-else class="flex justify-between items-center mb-10 mt-4">
@@ -82,9 +82,8 @@ import {
   SfButton,
   SfIconArrowBack,
 } from '@storefront-ui/vue';
-import { useMediaQuery } from '@vueuse/core';
 
-const isTabletScreen = useMediaQuery(mediaQueries.tablet);
+const { isTablet } = useBreakpoints();
 const { t } = useI18n();
 const router = useRouter();
 const sections = [

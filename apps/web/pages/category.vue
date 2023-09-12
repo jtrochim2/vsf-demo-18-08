@@ -1,6 +1,8 @@
 <template>
   <NuxtLayout name="default" :breadcrumbs="breadcrumbs">
     <CategoryPageContent
+      v-model:current-page="currentPage"
+      :items-per-page="pageSize"
       :title="$t('allProducts')"
       :total-products="productsCatalog?.pagination?.totalResults ?? 0"
       :products="productsCatalog?.products"
@@ -30,7 +32,7 @@ definePageMeta({
 });
 
 const { fetchProducts, data: productsCatalog } = useSearchProducts();
-const { pageSize, sort } = useProductSearchParams();
+const { pageSize, sort, currentPage } = useProductSearchParams();
 const { t } = useI18n();
 const breadcrumbs: Breadcrumb[] = [
   { name: t('home'), link: '/' },
@@ -38,7 +40,7 @@ const breadcrumbs: Breadcrumb[] = [
 ];
 const sortOption = ref(sort.value);
 
-await fetchProducts({ pageSize: pageSize.value, sort: sortOption.value });
+await fetchProducts({ pageSize: pageSize.value, currentPage: currentPage.value, sort: sortOption.value });
 
 watch(sortOption, (changedSortOption) => {
   if (changedSortOption) {
@@ -46,6 +48,11 @@ watch(sortOption, (changedSortOption) => {
     fetchProducts({ pageSize: pageSize.value, sort: sortOption.value });
   }
 });
+
+watch([pageSize, currentPage] as const, async ([pageSize, currentPage]) => {
+  await fetchProducts({ pageSize, currentPage });
+});
+
 // const subCategories = productsCatalog.value?.subCategories;
 // const categories = computed(
 //   () =>

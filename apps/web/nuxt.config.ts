@@ -10,6 +10,7 @@ export default defineNuxtConfig({
       NUXT_PUBLIC_SDK_SAPCC_SSR_API_URL: process.env.NUXT_PUBLIC_SDK_SAPCC_SSR_API_URL ?? 'http://localhost:8181/sapcc',
       NUXT_PUBLIC_SDK_CNTF_API_URL: process.env.NUXT_PUBLIC_SDK_CNTF_API_URL ?? 'http://localhost:8181/cntf',
       NUXT_PUBLIC_CATEGORY_ITEMS_PER_PAGE: process.env.NUXT_PUBLIC_CATEGORY_ITEMS_PER_PAGE ?? '24',
+      NUXT_PUBLIC_MAX_VISIBLE_CATEGORIES: process.env.NUXT_PUBLIC_MAX_VISIBLE_CATEGORIES ?? '5',
     },
   },
   app: {
@@ -87,6 +88,7 @@ export default defineNuxtConfig({
     '/_ipx/**': { headers: { 'cache-control': `public, max-age=31536000, immutable` } },
     '/icons/**': { headers: { 'cache-control': `public, max-age=31536000, immutable` } },
     '/favicon.ico': { headers: { 'cache-control': `public, max-age=31536000, immutable` } },
+    '/category': { swr: 3600 },
   },
   pwa: {
     registerType: 'autoUpdate',

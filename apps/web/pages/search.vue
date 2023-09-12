@@ -1,6 +1,8 @@
 <template>
   <CategoryPageContent
     v-if="productsCatalog"
+    v-model:current-page="currentPage"
+    :items-per-page="pageSize"
     :title="$t('resultsFor', { phrase: searchTerm })"
     :subtitle="productsCatalog?.pagination?.totalResults ? '' : $t('emptyState.search.subtitle')"
     :total-products="productsCatalog?.pagination?.totalResults ?? 0"
