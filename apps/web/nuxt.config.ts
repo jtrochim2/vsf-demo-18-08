@@ -105,6 +105,24 @@ export default defineNuxtConfig({
       navigationPreload: true,
       runtimeCaching: [
         {
+          urlPattern: ({ url, request }) => {
+            const isSameOrigin = self.origin === url.origin;
+            if (!isSameOrigin) return false;
+            const { pathname } = url;
+            /* Have to validate this condition otherwise empty `prefetch` request would be cached there */
+            return !pathname.startsWith('/api/') && request.headers.get('purpose') !== 'prefetch';
+          },
+          handler: 'NetworkFirst',
+          options: {
+            cacheName: 'others',
+            expiration: {
+              maxEntries: 32,
+              maxAgeSeconds: 60 * 60 * 24, // one day [s]
+            },
+            networkTimeoutSeconds: 10,
+          },
+        },
+        {
           urlPattern: ({ request }) => request.mode === 'navigate',
           handler: 'NetworkOnly',
           options: {

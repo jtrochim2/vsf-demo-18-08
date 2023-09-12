@@ -101,7 +101,7 @@ jobs:
           password: ${{ secrets.CLOUD_PASSWORD }}
           dockerfile: .vuestorefrontcloud/docker/middleware/Dockerfile
           buildoptions: '--compress'
-          buildargs: NODE_AUTH_TOKEN,NPM_EMAIL,NPM_PASS,NPM_USER,NPM_REGISTRY
+          buildargs: NODE_AUTH_TOKEN,NPM_EMAIL,NPM_PASS,NPM_USER,NPM_REGISTRY,CNTF_SPACE,CNTF_TOKEN,CNTF_BRANCH,SAPCC_OAUTH_URI,SAPCC_OAUTH_CLIENT_ID,SAPCC_OAUTH_CLIENT_SECRET,SAPCC_OAUTH_TOKEN_ENDPOINT,SAPCC_OAUTH_TOKEN_REVOKE_ENDPOINT,SAPCC_API_URI,SAPCC_MEDIA_HOST,DEFAULT_BASE_SITE_ID,DEFAULT_CATALOG_ID,DEFAULT_CATALOG_VERSION,DEFAULT_LANGUAGE,DEFAULT_CURRENCY=GBP
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_DEFAULT_ENTERPRISE_TOKEN }}
           NPM_EMAIL: ${{ secrets.NPM_EMAIL }}
@@ -109,11 +109,11 @@ jobs:
           NPM_USER: ${{ secrets.NPM_USER }}
           NPM_REGISTRY: https://registrynpm.storefrontcloud.io
           CNTF_SPACE: ${{ vars.CNTF_SPACE }}
-          CNTF_TOKEN: ${{ vars.CNTF_TOKEN }}
+          CNTF_TOKEN: ${{ secrets.CNTF_TOKEN }}
           CNTF_BRANCH: ${{ vars.CNTF_BRANCH }}
           SAPCC_OAUTH_URI: ${{ vars.SAPCC_OAUTH_URI }}
           SAPCC_OAUTH_CLIENT_ID: ${{ vars.SAPCC_OAUTH_CLIENT_ID }}
-          SAPCC_OAUTH_CLIENT_SECRET: ${{ vars.SAPCC_OAUTH_CLIENT_SECRET }}
+          SAPCC_OAUTH_CLIENT_SECRET: ${{ secrets.SAPCC_OAUTH_CLIENT_SECRET }}
           SAPCC_OAUTH_TOKEN_ENDPOINT: ${{ vars.SAPCC_OAUTH_TOKEN_ENDPOINT }}
           SAPCC_OAUTH_TOKEN_REVOKE_ENDPOINT: ${{ vars.SAPCC_OAUTH_TOKEN_REVOKE_ENDPOINT }}
           SAPCC_API_URI: ${{ vars.SAPCC_API_URI }}
@@ -154,7 +154,7 @@ jobs:
                 "tag":"${{ github.sha }}",
                 "image":"${{ secrets.DOCKER_REGISTRY_URL || 'registry.vuestorefront.cloud' }}/${{ vars.PROJECT_NAME }}-storefrontcloud-io/vue-storefront-middleware",
                 "path":"/api/",
-                "port":"3000",
+                "port":"8181",
                 "has_base_path":false
               }],
               "enabled": true
