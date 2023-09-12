@@ -15,7 +15,7 @@
     "lint": "turbo run lint",
     "lint:fix": "turbo run lint:fix",
     "format": "prettier --write \"**/*.{ts,vue,css,scss,md}\"",
-    "clean": "npx rimraf ./**/node_modules && rm yarn.lock",
+    "clean": "npx rimraf ./**/node_modules",
     "clean:hard": "npx rimraf ./**/node_modules && npx rimraf ./**/lib && rm yarn.lock && npx rimraf ./**/.turbo && npx rimraf ./**/.nuxt",
     "test": "turbo run test",
     "test:watch": "turbo run test:watch",

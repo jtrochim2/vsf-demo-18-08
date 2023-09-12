@@ -6,17 +6,12 @@
     {{ $t('filters') }}
   </div>
   <div class="flex flex-col gap-2">
-    <CategoryFiltersFilter v-if="sizeFacets" :facet="sizeFacets" v-model:selected="selectedFilters" type="size" />
-    <CategoryFiltersFilter v-if="colorFacets" :facet="colorFacets" v-model:selected="selectedFilters" type="color" />
+    <CategoryFiltersFilterBase v-for="facet in facets" :key="`${facet.name}-${facet.values?.length}`" :facet="facet" />
   </div>
 </template>
 
 <script setup lang="ts">
 import type { CategoryFiltersProps } from '~/components/CategoryFilters/types';
 
-const props = defineProps<CategoryFiltersProps>();
-const { facets } = toRefs(props);
-const selectedFilters = ref<string[]>([]);
-const colorFacets = computed(() => facets.value.find(({ name }) => name === 'color'));
-const sizeFacets = computed(() => facets.value.find(({ name }) => name === 'size'));
+defineProps<CategoryFiltersProps>();
 </script>

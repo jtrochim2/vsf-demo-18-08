@@ -1,13 +1,15 @@
-import { SfFacet } from '@vue-storefront/unified-data-model';
+import type { Facet, FacetValue } from '@vsf-enterprise/sapcc-types';
 
 export type CategoryFiltersProps = {
-  facets: SfFacet[];
+  facets: Facet[];
 };
 
 export type FilterProps = {
-  facet?: SfFacet;
-  selected: string[];
-  type: 'size' | 'color';
+  facet: Facet;
 };
 
-export type FilterEmits = (event: 'update:selected', parameter: FilterProps['selected']) => void;
+export type FilterItemProps = {
+  facetValue: FacetValue;
+};
+
+export type FilterItemEmits = (event: 'update:modelValue', parameter: FacetValue) => void;

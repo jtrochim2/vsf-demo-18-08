@@ -12,13 +12,13 @@
         <!-- <CategoryTree :categories="categories" :parent="{ name: $t('allProducts'), href: paths.category }" /> -->
         <CategorySorting
           :options="productsCatalog?.sorts"
-          :selected-option="sort ?? ''"
-          @on-change="(selectedValue) => (sortOption = selectedValue)"
+          :selected-option="sort"
+          @on-change="(selectedValue) => (sort = selectedValue)"
         />
-        <!-- <CategoryFilters :facets="productsCatalog.facets" /> -->
+        <CategoryFilters :facets="productsCatalog?.facets ?? []" />
       </template>
       <template #emptyState>
-        <LazyCategoryEmptyState />
+        <LazyCategoryEmptyState @clear-filters="query = ''" />
       </template>
     </CategoryPageContent>
   </NuxtLayout>
@@ -32,27 +32,30 @@ definePageMeta({
 });
 
 const { fetchProducts, data: productsCatalog } = useSearchProducts();
-const { pageSize, sort, currentPage } = useProductSearchParams();
+const { currentPage, pageSize, sort, query, searchTerm } = useProductSearchParams();
 const { t } = useI18n();
+
 const breadcrumbs: Breadcrumb[] = [
   { name: t('home'), link: '/' },
   { name: t('allProducts'), link: '/category' },
 ];
-const sortOption = ref(sort.value);
-
-await fetchProducts({ pageSize: pageSize.value, currentPage: currentPage.value, sort: sortOption.value });
-
-watch(sortOption, (changedSortOption) => {
-  if (changedSortOption) {
-    sort.value = sortOption.value;
-    fetchProducts({ pageSize: pageSize.value, sort: sortOption.value });
-  }
+await fetchProducts({
+  pageSize: pageSize.value,
+  currentPage: currentPage.value,
+  sort: sort.value,
+  query: query.value,
+  searchTerm: searchTerm.value,
 });
 
-watch([pageSize, currentPage] as const, async ([pageSize, currentPage]) => {
-  await fetchProducts({ pageSize, currentPage });
+watch([currentPage, pageSize, sort, query, searchTerm], ([currentPage, pageSize, sort, query, searchTerm]) => {
+  fetchProducts({
+    pageSize,
+    currentPage,
+    sort,
+    query,
+    searchTerm,
+  });
 });
-
 // const subCategories = productsCatalog.value?.subCategories;
 // const categories = computed(
 //   () =>

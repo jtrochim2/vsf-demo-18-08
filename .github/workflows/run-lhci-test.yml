@@ -25,9 +25,7 @@ jobs:
           registry-url: https://registrynpm.storefrontcloud.io
 
       - name: Install dependencies
-        run: yarn
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
+        run: yarn --frozen-lockfile
 
       - name: Build application
         run: yarn turbo run build --scope="web"

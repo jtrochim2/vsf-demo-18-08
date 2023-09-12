@@ -16,9 +16,9 @@
       data-testid="category-sidebar"
     >
       <div class="grid grid-rows-category-sidebar h-full md:block">
-        <div class="p-4 flex justify-between items-center md:hidden">
-          <span class="font-bold text-lg">{{ $t('listSettings') }}</span>
-          <SfButton variant="tertiary" @click="$emit('close')" :aria-label="$t('closeListSettings')">
+        <div class="px-4 py-2 flex justify-between items-center">
+          <span class="font-bold typography-headline-4">{{ $t('listSettings') }}</span>
+          <SfButton variant="tertiary" @click="$emit('close')" :aria-label="$t('closeListSettings')" class="md:hidden">
             <template #prefix>
               <SfIconClose class="text-neutral-500" />
             </template>
@@ -28,6 +28,9 @@
           <slot />
         </div>
         <div class="p-4 md:mt-2 flex flex-wrap justify-between border-t border-t-neutral-200 md:border-0 gap-3">
+          <SfButton variant="secondary" class="w-full mr-3" :disabled="!query" @click="query = ''">
+            {{ $t('clearFilters') }}
+          </SfButton>
           <SfButton class="md:hidden whitespace-nowrap flex flex-1" variant="primary" @click="$emit('close')">
             {{ $t('showProducts') }}
           </SfButton>
@@ -42,6 +45,7 @@ import { SfDrawer, SfButton, SfIconClose } from '@storefront-ui/vue';
 import type { CategorySidebarEmits, CategorySidebarProps } from '~/components/CategorySidebar/types';
 
 defineProps<CategorySidebarProps>();
-
 defineEmits<CategorySidebarEmits>();
+
+const { query } = useProductSearchParams();
 </script>
