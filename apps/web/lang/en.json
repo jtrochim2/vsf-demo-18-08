@@ -67,8 +67,17 @@
   "numberOfProducts": "1 Product | {count} Products",
   "prev": "Previous",
   "next": "Next",
-  "emptyStateText": "We cannot find any products that match the selected filters.",
-  "emptyStateText2": "Change or {0}",
+  "emptyState": {
+    "search": {
+      "heading": "No results found",
+      "text": "Have not found what you are looking for? Try a different search or browse the categories below",
+      "subtitle": "Sorry, we couldn’t find any matches."
+    },
+    "category": {
+      "heading": "We cannot find any products that match the selected filters.",
+      "text": "Change or {0}"
+    }
+  },
   "emptyStateAltText": "Image for no products found",
   "resultsFor": "Results for \"{phrase}\"",
   "prevAriaLabel": "Go to previous page",

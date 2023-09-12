@@ -7,7 +7,7 @@ export enum HeroDirection {
 }
 
 export type HeroProps = {
-  image: MappedImage;
+  image?: MappedImage;
   title?: string;
   subtitle?: string;
   description?: string;

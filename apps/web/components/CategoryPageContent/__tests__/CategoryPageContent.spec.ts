@@ -30,16 +30,37 @@ describe('<CategoryPageContent />', () => {
   });
 
   it('should render empty state', () => {
+    const { findByTestId, getByTestId } = mount(CategoryPageContent, {
+      props: {
+        title: 'title',
+        totalProducts: 0,
+        products: [],
+        itemsPerPage: 24,
+        showEmptyState: true,
+      },
+    });
+
+    expect(findByTestId('category-grid').exists()).toBeFalsy();
+    expect(findByTestId('pagination').exists()).toBeFalsy();
+    expect(getByTestId('category-sidebar'));
+    expect(getByTestId('category-content'));
+  });
+
+  it('should render simple empty state', () => {
     const { findByTestId } = mount(CategoryPageContent, {
       props: {
         title: 'title',
         totalProducts: 0,
         products: [],
         itemsPerPage: 24,
+        showSimpleEmptyState: true,
       },
     });
 
-    expect(findByTestId('category-grid').exists()).toBe(false);
+    expect(findByTestId('category-grid').exists()).toBeFalsy();
+    expect(findByTestId('pagination').exists()).toBeFalsy();
+    expect(findByTestId('category-sidebar').exists()).toBeFalsy();
+    expect(findByTestId('category-content').exists()).toBeFalsy();
   });
 
   it('should have pagination', () => {

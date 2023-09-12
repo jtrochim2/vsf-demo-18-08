@@ -4,12 +4,16 @@
       :title="$t('allProducts')"
       :total-products="productsCatalog?.pagination?.totalResults ?? 0"
       :products="productsCatalog?.products"
+      :show-empty-state="!productsCatalog?.pagination?.totalResults"
     >
       <!-- <template #sidebar>
         <CategoryTree :categories="categories" :parent="{ name: $t('allProducts'), href: paths.category }" />
         <CategorySorting />
         <CategoryFilters :facets="productsCatalog.facets" />
       </template> -->
+      <template #emptyState>
+        <LazyCategoryEmptyState />
+      </template>
     </CategoryPageContent>
   </NuxtLayout>
 </template>
@@ -31,7 +35,7 @@ const breadcrumbs: Breadcrumb[] = [
   { name: t('allProducts'), link: '/category' },
 ];
 
-onMounted(async () => await fetchProducts({ pageSize }));
+await fetchProducts({ pageSize });
 // const subCategories = productsCatalog.value?.subCategories;
 // const categories = computed(
 //   () =>

@@ -6,7 +6,7 @@ export const useProductSearchParams = () => {
   } = useRuntimeConfig();
 
   const sort = useRouteQuery('sort', 'relevance' as string);
-  const currentPage = useRouteQuery('page', '1', {
+  const currentPage = useRouteQuery('page', '0', {
     transform: (value) => {
       const page = Number(value);
       return page >= 0 ? page : 0;

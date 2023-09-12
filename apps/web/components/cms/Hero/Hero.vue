@@ -34,6 +34,7 @@
     </div>
     <div class="flex flex-col justify-center md:basis-2/4 md:items-stretch md:overflow-hidden">
       <NuxtImg
+        v-if="image"
         :src="`https:${image.url}`"
         :alt="image.alt ?? $t('displayImage')"
         class="h-auto w-full object-cover"

@@ -29,9 +29,10 @@ const props = defineProps<{
 }>();
 
 const router = useRouter();
+const { searchTerm } = useProductSearchParams();
 const { open } = useDisclosure();
 
-const inputModel = ref('');
+const inputModel = ref(searchTerm.value);
 const inputReference = ref<HTMLSpanElement>();
 const handleInputFocus = () => {
   const inputElement = unrefElement(inputReference)?.querySelector('input');
@@ -42,14 +43,18 @@ const handleReset = () => {
   handleInputFocus();
 };
 const handleSubmit = () => {
-  props.close?.();
-  router.push({ path: paths.search, query: { search: inputModel.value } });
-  handleReset();
+  if (inputModel.value) {
+    props.close?.();
+    router.push({ path: paths.search, query: { search: inputModel.value } });
+  }
 };
 
 watch(inputModel, () => {
   if (inputModel.value === '') {
     handleReset();
   }
+});
+watch(searchTerm, () => {
+  inputModel.value = searchTerm.value;
 });
 </script>

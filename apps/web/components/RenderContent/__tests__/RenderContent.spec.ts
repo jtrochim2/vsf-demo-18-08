@@ -5,10 +5,19 @@ describe('<RenderContent />', () => {
   it('should render component', () => {
     const { getByTestId } = mount(RenderContent, {
       props: {
-        content: [],
+        content: [
+          {
+            fields: {
+              component: 'Heading',
+              title: 'test',
+              tag: 'h1',
+              className: 'test',
+            },
+          },
+        ],
       },
     });
 
-    expect(getByTestId('render-content'));
+    expect(getByTestId('render-content-Heading'));
   });
 });
