@@ -24,7 +24,7 @@
           :button-text="$t('shipping.addButton')"
           type="shippingAddress"
         />
-        <UiDivider class-name="w-screen md:w-auto -mx-4 md:mx-0" />
+        <UiDivider class="w-screen md:w-auto -mx-4 md:mx-0" />
         <ShippingMethod :shipping-methods="shippingMethods" />
         <UiDivider class="w-screen md:w-auto -mx-4 md:mx-0" />
         <CheckoutPayment :active-payment="activePayment" @update:active-payment="activePayment = $event" />

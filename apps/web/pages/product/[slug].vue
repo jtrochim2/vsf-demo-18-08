@@ -38,9 +38,9 @@ await fetchProductRecommended(slug);
 const { t } = useI18n();
 
 const breadcrumbs: Breadcrumb[] = [
-  { name: t('home'), link: '/' },
-  { name: t('category'), link: '/category' },
-  { name: product.value?.name as string, link: `#` },
+  { name: t('home'), link: '/', id: 'home' },
+  { name: t('category'), link: '/category', id: 'category' },
+  { name: product.value?.name as string, link: `#`, id: product.value?.name ?? '#' },
 ];
 
 const title = computed(() => product.value?.name ?? '');

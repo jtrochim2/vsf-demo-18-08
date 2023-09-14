@@ -1,36 +1,38 @@
 <template>
-  <template v-for="(component, index) in content">
-    <CmsHero
-      v-if="component.fields.component === ComponentNames.Hero"
-      v-bind="withUnwrappedImage(component.fields)"
-      :key="`${ComponentNames.Hero}-${index}`"
-      :data-testid="`render-content-${component.fields.component}`"
-    />
-    <CmsHeading
-      v-else-if="component.fields.component === ComponentNames.Heading"
-      v-bind="component.fields"
-      :key="`${ComponentNames.Heading}-${index}`"
-      :data-testid="`render-content-${component.fields.component}`"
-    />
-    <CmsCategoryCard
-      v-else-if="component.fields.component === ComponentNames.Card"
-      v-bind="toCardContentProps(component.fields)"
-      :key="`${ComponentNames.Card}-${index}`"
-      :data-testid="`render-content-${component.fields.component}`"
-    />
-    <CmsDisplay
-      v-else-if="component.fields.component === ComponentNames.Display"
-      v-bind="toDisplayProps(component.fields)"
-      :key="`${ComponentNames.Display}-${index}`"
-      data-testid="banners"
-    />
-    <CmsProductSlider
-      v-else-if="component.fields.component === ComponentNames.ProductSlider"
-      v-bind="toProductSliderProps(component.fields)"
-      :key="`${ComponentNames.ProductSlider}-${index}`"
-      :data-testid="`render-content-${component.fields.component}`"
-    />
-  </template>
+  <div data-testid="render-content">
+    <template v-for="(component, index) in content">
+      <CmsHero
+        v-if="component.fields.component === ComponentNames.Hero"
+        v-bind="withUnwrappedImage(component.fields)"
+        :key="`${ComponentNames.Hero}-${index}`"
+        :data-testid="`render-content-${component.fields.component}`"
+      />
+      <CmsHeading
+        v-else-if="component.fields.component === ComponentNames.Heading"
+        v-bind="component.fields"
+        :key="`${ComponentNames.Heading}-${index}`"
+        :data-testid="`render-content-${component.fields.component}`"
+      />
+      <CmsCategoryCard
+        v-else-if="component.fields.component === ComponentNames.Card"
+        v-bind="toCardContentProps(component.fields)"
+        :key="`${ComponentNames.Card}-${index}`"
+        :data-testid="`render-content-${component.fields.component}`"
+      />
+      <CmsDisplay
+        v-else-if="component.fields.component === ComponentNames.Display"
+        v-bind="toDisplayProps(component.fields)"
+        :key="`${ComponentNames.Display}-${index}`"
+        :data-testid="`render-content-${component.fields.component}`"
+      />
+      <CmsProductSlider
+        v-else-if="component.fields.component === ComponentNames.ProductSlider"
+        v-bind="toProductSliderProps(component.fields)"
+        :key="`${ComponentNames.ProductSlider}-${index}`"
+        :data-testid="`render-content-${component.fields.component}`"
+      />
+    </template>
+  </div>
 </template>
 
 <script setup lang="ts">

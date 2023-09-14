@@ -1,18 +1,13 @@
-import type {
-  FetchProducts,
-  UseSearchProductsReturn,
-  UseSearchProductsState,
-} from '~/composables/useSearchProducts/types';
+import { ProductSearchPage, ProductSearchProps } from '@vsf-enterprise/sapcc-types';
 import { useSdk } from '~/sdk';
 
 /**
  * @description Composable for managing products.
- * @returns {@link useSearchProducts}
  * @example
  * const { data, loading, fetchProducts } = useSearchProducts();
  */
-export const useSearchProducts: UseSearchProductsReturn = () => {
-  const state = useState<UseSearchProductsState>('products', () => ({
+export const useSearchProducts = () => {
+  const state = useState<{ data: null | ProductSearchPage; loading: boolean }>('products', () => ({
     data: null,
     loading: false,
   }));
@@ -22,7 +17,7 @@ export const useSearchProducts: UseSearchProductsReturn = () => {
    * @example
    * fetchProducts();
    */
-  const fetchProducts: FetchProducts = async (props) => {
+  const fetchProducts = async (props?: ProductSearchProps) => {
     try {
       state.value.loading = true;
       const { data, error } = await useAsyncData(() => useSdk().sapcc.searchProduct(props));

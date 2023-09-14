@@ -9,12 +9,18 @@
       :show-empty-state="!productsCatalog?.pagination?.totalResults"
     >
       <template #sidebar>
-        <!-- <CategoryTree :categories="categories" :parent="{ name: $t('allProducts'), href: paths.category }" /> -->
         <CategorySorting
           :options="productsCatalog?.sorts"
           :selected-option="sort"
           @on-change="(selectedValue) => (sort = selectedValue)"
         />
+        <div
+          class="py-2 px-4 mt-6 mb-4 bg-neutral-100 typography-headline-6 font-bold text-neutral-900 uppercase tracking-widest md:rounded-md"
+          data-testid="category-filters"
+        >
+          {{ $t('filters') }}
+        </div>
+        <CategoryTree :current-category-id="currentCategoryId" />
         <CategoryFilters :facets="productsCatalog?.facets ?? []" />
       </template>
       <template #emptyState>
@@ -25,27 +31,39 @@
 </template>
 
 <script setup lang="ts">
-import type { Breadcrumb } from '~/components/ui/Breadcrumbs/types';
-
 definePageMeta({
   layout: false,
 });
 
-const { fetchProducts, data: productsCatalog } = useSearchProducts();
 const { currentPage, pageSize, sort, query, searchTerm } = useProductSearchParams();
-const { t } = useI18n();
+const { currentRoute } = useRouter();
 
-const breadcrumbs: Breadcrumb[] = [
-  { name: t('home'), link: '/' },
-  { name: t('allProducts'), link: '/category' },
-];
+const currentCategoryId = computed(() => currentRoute.value?.params?.slug?.at(-1) ?? '');
+
+const searchProductsParams = computed(() => ({
+  ...(currentCategoryId.value && {
+    filters: {
+      allCategories: [currentCategoryId.value],
+    },
+  }),
+}));
+const { fetchProducts, data: productsCatalog } = useSearchProducts();
+const { data: catalogVersion, fetchCatalogVersion } = useCatalogVersion();
+
+const { breadcrumbs } = useCategoryBreadcrumbs({
+  catalogVersion,
+  currentCategoryId,
+});
+
 await fetchProducts({
   pageSize: pageSize.value,
   currentPage: currentPage.value,
   sort: sort.value,
   query: query.value,
   searchTerm: searchTerm.value,
+  ...searchProductsParams.value,
 });
+await fetchCatalogVersion();
 
 watch([currentPage, pageSize, sort, query, searchTerm], ([currentPage, pageSize, sort, query, searchTerm]) => {
   fetchProducts({
@@ -56,13 +74,4 @@ watch([currentPage, pageSize, sort, query, searchTerm], ([currentPage, pageSize,
     searchTerm,
   });
 });
-// const subCategories = productsCatalog.value?.subCategories;
-// const categories = computed(
-//   () =>
-//     subCategories?.map(({ name, productCount }) => ({
-//       name,
-//       count: productCount || undefined,
-//       href: paths.category,
-//     })) || [],
-// );
 </script>

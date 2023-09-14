@@ -8,16 +8,6 @@ vi.mock('~/composables/useProductSearchParams/useProductSearchParams', () => ({
 }));
 
 describe('<CategoryFilters />', () => {
-  it('should render component', () => {
-    const { getByTestId } = mount(CategoryFilters, {
-      props: {
-        facets: [],
-      },
-    });
-
-    expect(getByTestId('category-filters'));
-  });
-
   it('should render <FilterBase /> component', () => {
     const { getByTestId } = mount(CategoryFilters, {
       props: {
