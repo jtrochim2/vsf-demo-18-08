@@ -80,6 +80,7 @@ export default defineNuxtConfig({
     '@nuxt/image',
     '@vite-pwa/nuxt',
     'nuxt-vitest',
+    'nuxt-lazy-hydrate',
   ],
   nitro: {
     compressPublicAssets: true,

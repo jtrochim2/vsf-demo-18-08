@@ -5,7 +5,9 @@
       <p v-if="subtitle" class="mb-4 font-medium typography-text-base">{{ subtitle }}</p>
       <div class="md:flex gap-6" data-testid="category-page-content">
         <CategorySidebar :is-open="isOpen" @close="close" v-if="!showSimpleEmptyState">
-          <slot name="sidebar" />
+          <NuxtLazyHydrate when-visible>
+            <slot name="sidebar" />
+          </NuxtLazyHydrate>
         </CategorySidebar>
         <div class="flex-1" v-if="!showSimpleEmptyState" data-testid="category-content">
           <div class="flex justify-between items-center mb-6">
@@ -24,30 +26,36 @@
             class="grid grid-cols-1 2xs:grid-cols-2 gap-4 md:gap-6 md:grid-cols-2 lg:grid-cols-3 3xl:grid-cols-4 mb-10 md:mb-5"
             data-testid="category-grid"
           >
-            <UiProductCard
+            <NuxtLazyHydrate
+              when-visible
               v-for="({ code, name, averageRating, price, images, url }, index) in products"
               :key="code"
-              :name="name ?? ''"
-              :rating="averageRating"
-              :link="url ?? ''"
-              :price="price"
-              :image-url="images?.find((image) => image.format === 'product')?.url ?? ''"
-              :image-alt="images?.find((image) => image.format === 'product')?.altText ?? ''"
-              :slug="code"
-              :priority="index === 0"
-            />
+            >
+              <UiProductCard
+                :name="name ?? ''"
+                :rating="averageRating"
+                :link="url ?? ''"
+                :price="price"
+                :image-url="images?.find((image) => image.format === 'product')?.url ?? ''"
+                :image-alt="images?.find((image) => image.format === 'product')?.altText ?? ''"
+                :slug="code"
+                :priority="index === 0"
+              />
+            </NuxtLazyHydrate>
           </section>
           <template v-else>
             <slot name="emptyState" />
           </template>
-          <UiPagination
-            v-if="totalProducts > itemsPerPage"
-            @update:current-page="$emit('update:currentPage', $event)"
-            :current-page="currentPage + 1"
-            :total-items="totalProducts"
-            :page-size="itemsPerPage"
-            :max-visible-pages="maxVisiblePages"
-          />
+          <NuxtLazyHydrate when-visible>
+            <UiPagination
+              v-if="totalProducts > itemsPerPage"
+              @update:current-page="$emit('update:currentPage', $event)"
+              :current-page="currentPage + 1"
+              :total-items="totalProducts"
+              :page-size="itemsPerPage"
+              :max-visible-pages="maxVisiblePages"
+            />
+          </NuxtLazyHydrate>
         </div>
         <template v-if="showSimpleEmptyState">
           <slot name="simpleEmptyState" />

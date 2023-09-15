@@ -13,26 +13,29 @@
       </template>
       <span class="hidden lg:flex whitespace-nowrap">{{ $t('navbarButtonText') }}</span>
     </SfButton>
-    <UiSearch class="hidden md:block flex-1" />
+    <NuxtLazyHydrate when-visible>
+      <UiSearch class="hidden md:block flex-1" />
+    </NuxtLazyHydrate>
     <nav class="hidden md:flex md:flex-row md:flex-nowrap">
-      <SfButton
-        class="group relative text-white hover:text-white active:text-white hover:bg-primary-800 active:bg-primary-900 mr-1 -ml-0.5 rounded-md"
-        :tag="NuxtLink"
-        :to="paths.cart"
-        :aria-label="$t('numberInCart', cartLineItemsCount)"
-        variant="tertiary"
-        square
-      >
-        <template #prefix>
-          <SfIconShoppingCart />
-          <SfBadge
-            v-if="cartLineItemsCount > 0"
-            :content="cartLineItemsCount"
-            class="outline outline-primary-700 bg-white !text-neutral-900 group-hover:outline-primary-800 group-active:outline-primary-900 flex justify-center"
-            data-testid="cart-badge"
-          />
-        </template>
-      </SfButton>
+      <NuxtLazyHydrate when-visible>
+        <SfButton
+          class="group relative text-white hover:text-white active:text-white hover:bg-primary-800 active:bg-primary-900 mr-1 -ml-0.5 rounded-md"
+          :tag="NuxtLink"
+          :to="paths.cart"
+          :aria-label="$t('numberInCart', cartLineItemsCount)"
+          variant="tertiary"
+          square
+        >
+          <template #prefix>
+            <SfIconShoppingCart />
+            <SfBadge
+              v-if="cartLineItemsCount > 0"
+              :content="cartLineItemsCount"
+              class="outline outline-primary-700 bg-white !text-neutral-900 group-hover:outline-primary-800 group-active:outline-primary-900 flex justify-center"
+              data-testid="cart-badge"
+            />
+          </template> </SfButton
+      ></NuxtLazyHydrate>
       <SfDropdown v-model="isAccountDropdownOpen" placement="bottom-end">
         <template #trigger>
           <SfButton
@@ -63,6 +66,7 @@
       class="relative text-white hover:text-white active:text-white hover:bg-primary-800 active:bg-primary-900 rounded-md md:hidden"
       square
       @click="searchModalOpen"
+      :aria-label="$t('openSearchModalButtonLabel')"
     >
       <SfIconSearch />
     </SfButton>
@@ -75,25 +79,31 @@
   <main>
     <slot />
   </main>
-  <UiNavbarBottom />
-  <UiFooter />
-  <SfModal
-    v-model="isSearchModalOpen"
-    class="w-full h-full z-50"
-    as="section"
-    role="dialog"
-    aria-labelledby="search-modal-title"
-  >
-    <header class="mb-4">
-      <SfButton square variant="tertiary" class="absolute right-4 top-2" @click="searchModalClose">
-        <SfIconClose class="text-neutral-500" />
-      </SfButton>
-      <h3 id="search-modal-title" class="absolute left-6 top-4 font-bold typography-headline-4 mb-4">
-        {{ $t('search') }}
-      </h3>
-    </header>
-    <UiSearch :close="searchModalClose" />
-  </SfModal>
+  <NuxtLazyHydrate when-idle>
+    <UiNavbarBottom />
+  </NuxtLazyHydrate>
+  <NuxtLazyHydrate when-visible>
+    <UiFooter />
+  </NuxtLazyHydrate>
+  <NuxtLazyHydrate when-idle>
+    <SfModal
+      v-model="isSearchModalOpen"
+      class="w-full h-full z-50"
+      tag="section"
+      role="dialog"
+      aria-labelledby="search-modal-title"
+    >
+      <header class="mb-4">
+        <SfButton square variant="tertiary" class="absolute right-4 top-2" @click="searchModalClose">
+          <SfIconClose class="text-neutral-500" />
+        </SfButton>
+        <h3 id="search-modal-title" class="absolute left-6 top-4 font-bold typography-headline-4 mb-4">
+          {{ $t('search') }}
+        </h3>
+      </header>
+      <UiSearch :close="searchModalClose" />
+    </SfModal>
+  </NuxtLazyHydrate>
 </template>
 
 <script setup lang="ts">
@@ -120,8 +130,9 @@ defineProps<DefaultLayoutProps>();
 const { data: cart } = useCart();
 const { fetchCustomer, data: account } = useCustomer();
 
-onMounted(() => {
-  fetchCustomer();
+onMounted(async () => {
+  await nextTick();
+  await fetchCustomer();
 });
 usePageTitle();
 
