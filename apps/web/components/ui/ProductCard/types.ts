@@ -13,4 +13,5 @@ export type ProductCardProps = {
   showAddToCartButton?: boolean;
   priority?: boolean;
   lazy?: boolean;
+  size?: 'sm' | 'base';
 };

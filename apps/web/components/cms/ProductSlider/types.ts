@@ -3,3 +3,7 @@ import type { ProductSliderProps as ProductSliderBlockProps, ProductItem } from 
 export interface ProductSliderProps extends Omit<ProductSliderBlockProps, 'products'> {
   items: ProductItem[];
 }
+
+export type ProductSliderItemProps = {
+  code: string;
+};

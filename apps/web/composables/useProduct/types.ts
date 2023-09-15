@@ -1,12 +1,12 @@
 import type { Ref } from 'vue';
-import type { SfProduct, Maybe } from '@vue-storefront/unified-data-model';
+import type { Product, ProductGetProps } from '@vsf-enterprise/sapcc-types';
 
 export interface UseProductState {
-  data: Maybe<SfProduct>;
+  data: Product | null;
   loading: boolean;
 }
 
-export type FetchProduct = (slug: string) => Promise<Ref<Maybe<SfProduct>>>;
+export type FetchProduct = (params: ProductGetProps) => Promise<Ref<Product | null>>;
 
 export interface UseProduct {
   data: Readonly<Ref<UseProductState['data']>>;

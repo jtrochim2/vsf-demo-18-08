@@ -19,11 +19,14 @@
         />
       </SfLink>
     </div>
-    <div class="flex flex-col p-2 border-t border-neutral-200 flex-grow">
+    <div class="flex flex-col p-2 border-t border-neutral-200 flex-grow text-neutral-900">
       <SfLink
         :tag="NuxtLink"
         :to="`${paths.product}${slug}`"
-        class="no-underline typography-text-sm md:typography-text-base"
+        :class="[
+          'typography-text-sm text-inherit no-underline hover:underline hover:!text-primary-800 active:text-primary-900 visited:!text-inherit',
+          size === 'base' && 'md:typography-text-base',
+        ]"
         variant="secondary"
       >
         {{ removeHtmlTags(name) }}
@@ -34,10 +37,13 @@
           <SfCounter size="xs">{{ ratingCount }}</SfCounter>
         </SfLink>
       </div>
-      <span class="block pb-2 font-bold typography-headline-4 mt-2" data-testid="product-card-vertical-price">
+      <span
+        :class="['block pb-2 font-bold text-sm mt-2', size === 'base' && 'md:text-lg']"
+        data-testid="product-card-vertical-price"
+      >
         {{ price?.formattedValue }}
       </span>
-      <SfButton type="button" class="mt-auto w-fit">
+      <SfButton v-if="showAddToCartButton" type="button" class="mt-auto w-fit">
         <template #prefix>
           <SfIconShoppingCart size="sm" />
         </template>
@@ -55,6 +61,8 @@ import type { ProductCardProps } from '~/components/ui/ProductCard/types';
 withDefaults(defineProps<ProductCardProps>(), {
   lazy: true,
   imageAlt: '',
+  showAddToCartButton: true,
+  size: 'base',
 });
 
 const NuxtLink = resolveComponent('NuxtLink');

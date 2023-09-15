@@ -1,23 +1,6 @@
 <template>
-  <SfScrollable
-    buttons-placement="floating"
-    class="items-center pb-4"
-    :wrapper-class="wrapperClass"
-    data-testid="product-slider"
-  >
-    <div v-for="{ product } in items" :key="product">{{ product }}</div>
-    <!-- <UiProductCard
-      v-for="product in items"
-      :key="product.id"
-      class="max-w-[192px]"
-      :name="product.name ?? ''"
-      :slug="product.slug"
-      :image-url="product.primaryImage?.url ?? ''"
-      :image-alt="product.primaryImage?.alt ?? ''"
-      :price="product.price?.value.amount"
-      :rating-count="product.rating?.count"
-      :rating="product.rating?.average"
-    /> -->
+  <SfScrollable buttons-placement="floating" class="pb-4" :wrapper-class="wrapperClass" data-testid="product-slider">
+    <slot />
   </SfScrollable>
 </template>
 
