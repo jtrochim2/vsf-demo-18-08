@@ -62,6 +62,7 @@ import { SfButton, SfInput } from '@storefront-ui/vue';
 import type { OrderSummaryPropsType } from '~/components/OrderSummary/types';
 
 const props = defineProps<OrderSummaryPropsType>();
+
 const totalDiscounts = computed(
   () => !!(props.cart.totalDiscounts?.value && props.cart.totalDiscounts.value > 0) && props.cart.totalDiscounts,
 );

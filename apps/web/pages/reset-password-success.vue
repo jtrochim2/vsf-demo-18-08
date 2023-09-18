@@ -29,6 +29,6 @@ definePageMeta({
   layout: false,
 });
 
-const NuxtLink = resolveComponent('NuxtLink');
 const email = ref('hieronim.anonim@gmail.com');
+const NuxtLink = resolveComponent('NuxtLink');
 </script>

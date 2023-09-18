@@ -43,7 +43,7 @@
       >
         {{ price?.formattedValue }}
       </span>
-      <SfButton v-if="showAddToCartButton" type="button" class="mt-auto w-fit">
+      <SfButton v-if="showAddToCartButton" class="mt-auto w-fit">
         <template #prefix>
           <SfIconShoppingCart size="sm" />
         </template>
@@ -65,7 +65,6 @@ withDefaults(defineProps<ProductCardProps>(), {
   size: 'base',
 });
 
-const NuxtLink = resolveComponent('NuxtLink');
-
 const removeHtmlTags = (html?: string) => html?.replace(/<.*?>/g, '');
+const NuxtLink = resolveComponent('NuxtLink');
 </script>

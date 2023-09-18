@@ -45,6 +45,8 @@ import type { ComponentNames } from '~/composables/useContent/types';
 import type { CardFields, DisplayFields, ProductSliderFields } from '~/helpers/cms/types';
 import { useSdk } from '~/sdk';
 
+defineProps<RenderContentProps>();
+
 const withUnwrappedImage = <TFields extends { image: Image }>(
   item: TFields,
 ): Omit<TFields, 'image'> & { image: MappedImage } => ({
@@ -66,6 +68,4 @@ const toProductSliderProps = (fields: ProductSliderFields): ProductSliderProps =
   ...fields,
   items: fields.items.map((item) => item.fields),
 });
-
-defineProps<RenderContentProps>();
 </script>

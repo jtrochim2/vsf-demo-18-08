@@ -38,11 +38,11 @@
 
 <script setup lang="ts">
 import { SfChip, SfThumbnail } from '@storefront-ui/vue';
-import { ProductPropertiesProps } from '~/components/ProductProperties/types';
+import type { ProductPropertiesProps } from '~/components/ProductProperties/types';
 
 const props = defineProps<ProductPropertiesProps>();
-const { getAttributeList, getAttribute, setAttribute } = useProductAttribute(props.product, ['color', 'size']);
 
+const { getAttributeList, getAttribute, setAttribute } = useProductAttribute(props.product, ['color', 'size']);
 const sizes = getAttributeList('size');
 const colors = getAttributeList('color');
 const selectedSize = computed(() => getAttribute('size'));

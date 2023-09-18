@@ -30,7 +30,7 @@
     </div>
   </div>
 </template>
-<script lang="ts" setup>
+<script setup lang="ts">
 import { SfIconBlock, SfListItem, SfRadio } from '@storefront-ui/vue';
 import type { ShippingMethodProps } from '~/components/ShippingMethod/types';
 

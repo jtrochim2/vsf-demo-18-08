@@ -64,7 +64,7 @@
 <script setup lang="ts">
 import { SfAccordionItem, SfButton, useDisclosure, SfIconChevronLeft, SfIconArrowBack } from '@storefront-ui/vue';
 import type { CategoryHierarchy } from '@vsf-enterprise/sapcc-types';
-import type { CategoryTreeProps } from './types';
+import type { CategoryTreeProps } from '~/components/CategoryTree/types';
 
 const {
   public: { NUXT_PUBLIC_MAX_VISIBLE_CATEGORIES: maxVisibleCategories },

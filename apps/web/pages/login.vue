@@ -22,14 +22,14 @@
           {{ $t('auth.login.submitLabel') }}
         </span>
       </SfButton>
-      <SfButton :tag="NuxtLink" to="/reset-password" variant="tertiary">
+      <SfButton :tag="NuxtLink" :to="paths.authResetPassword" variant="tertiary" data-testid="login-page-reset-button">
         {{ $t('auth.login.forgotPasswordLabel') }}
       </SfButton>
     </form>
 
     <UiAlert class="mt-6 w-full p-4 md:p-6 !justify-start typography-text-base" variant="neutral">
       <i18n-t tag="span" keypath="auth.login.createAccountBanner">
-        <SfLink :tag="NuxtLink" :to="paths.authSignup" variant="primary">
+        <SfLink :tag="NuxtLink" :to="paths.authSignup" variant="primary" data-testid="login-page-signup-button">
           {{ $t('auth.login.createAccountLinkLabel') }}
         </SfLink>
       </i18n-t>
@@ -37,14 +37,13 @@
   </NuxtLayout>
 </template>
 
-<script lang="ts" setup>
+<script setup lang="ts">
 import { SfButton, SfLink, SfCheckbox, SfInput, SfLoaderCircular } from '@storefront-ui/vue';
 
 definePageMeta({
   layout: false,
 });
 
-const NuxtLink = resolveComponent('NuxtLink');
 const router = useRouter();
 
 const email = ref('');
@@ -59,4 +58,5 @@ const login = () => {
     return router.push('/').then(() => (isLoading.value = false));
   }, 4000);
 };
+const NuxtLink = resolveComponent('NuxtLink');
 </script>

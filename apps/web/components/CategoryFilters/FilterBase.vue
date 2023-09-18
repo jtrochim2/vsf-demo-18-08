@@ -55,6 +55,7 @@ const props = defineProps<FilterProps>();
 
 const { isOpen: isShowingAllItems, toggle: toggleShowMore } = useDisclosure();
 const { query } = useProductSearchParams();
+
 const isAccordionOpen = ref(true);
 const maxItems = props.facet.name === 'Size' ? 15 : 5;
 const isButtonVisible = props.facet.values?.length && maxItems < props.facet.values.length;

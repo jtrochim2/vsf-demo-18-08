@@ -28,5 +28,6 @@ import type { FilterItemEmits, FilterItemProps } from '~/components/CategoryFilt
 
 defineEmits<FilterItemEmits>();
 const props = defineProps<FilterItemProps>();
+
 const selectedFilter = ref(props.facetValue.selected);
 </script>

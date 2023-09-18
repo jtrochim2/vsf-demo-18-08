@@ -17,6 +17,7 @@
 import type { ProductSliderItemProps } from '~/components/cms/ProductSlider/types';
 
 const props = defineProps<ProductSliderItemProps>();
+
 const { fetchProduct, data: product } = useProduct(props.code);
 
 await fetchProduct({ id: props.code });

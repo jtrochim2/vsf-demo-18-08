@@ -10,5 +10,6 @@
 import type { ProductSliderProps } from '~/components/cms/ProductSlider/types';
 
 const props = defineProps<ProductSliderProps>();
+
 const productIds = props.items.map(({ product }) => product.split('/').pop()).filter(Boolean) as string[];
 </script>

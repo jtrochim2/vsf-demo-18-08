@@ -37,14 +37,14 @@
 <script setup lang="ts">
 import { SfButton, SfIconArrowBack, SfLoaderCircular } from '@storefront-ui/vue';
 
-const { data: cart, loading: isLoading } = useCart();
-
 defineProps<{
   backLabelDesktop: string;
   backLabelMobile: string;
   backHref: string;
   heading: string;
 }>();
+
+const { data: cart, loading: isLoading } = useCart();
 
 const NuxtLink = resolveComponent('NuxtLink');
 </script>

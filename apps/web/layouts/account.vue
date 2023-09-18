@@ -98,6 +98,7 @@ import {
 const { isTablet } = useBreakpoints();
 const { t } = useI18n();
 const router = useRouter();
+
 const sections = [
   {
     title: t('account.accountSettings.heading'),
@@ -140,7 +141,6 @@ const isRoot = computed(() => rootPathRegex.test(currentPath.value));
 const findCurrentPage = computed(() =>
   sections.flatMap(({ subsections }) => subsections).find(({ link }) => currentPath.value.includes(link)),
 );
-
 const breadcrumbs = computed(() => [
   { name: t('home'), link: paths.home },
   { name: t('account.heading'), link: paths.account },

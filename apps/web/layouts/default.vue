@@ -2,7 +2,6 @@
   <UiNavbarTop filled>
     <SfButton
       class="!px-2 mr-auto hidden lg:flex text-white hover:text-white active:text-white hover:bg-primary-800 active:bg-primary-900"
-      type="button"
       data-testid="category-index-link"
       variant="tertiary"
       :tag="NuxtLink"
@@ -34,8 +33,9 @@
               class="outline outline-primary-700 bg-white !text-neutral-900 group-hover:outline-primary-800 group-active:outline-primary-900 flex justify-center"
               data-testid="cart-badge"
             />
-          </template> </SfButton
-      ></NuxtLazyHydrate>
+          </template>
+        </SfButton>
+      </NuxtLazyHydrate>
       <SfDropdown v-model="isAccountDropdownOpen" placement="bottom-end">
         <template #trigger>
           <SfButton
@@ -43,6 +43,7 @@
             class="relative text-white hover:text-white active:text-white hover:bg-primary-800 active:bg-primary-900 rounded-md"
             :class="{ 'bg-primary-900': isAccountDropdownOpen }"
             @click="accountDropdownToggle()"
+            data-testid="account-dropdown-button"
           >
             <template #prefix><SfIconPerson /></template>
             {{ account?.firstName }}
@@ -52,9 +53,21 @@
           <li v-for="{ label, link } in accountDropdown" :key="label">
             <template v-if="label === 'account.logout'">
               <UiDivider class="my-2" />
-              <SfListItem tag="button" class="text-left" @click="accountDropdownToggle()">{{ $t(label) }}</SfListItem>
+              <SfListItem
+                tag="button"
+                class="text-left"
+                @click="accountDropdownToggle()"
+                data-testid="account-dropdown-list-item"
+                >{{ $t(label) }}
+              </SfListItem>
             </template>
-            <SfListItem v-else :tag="NuxtLink" :to="link" :class="{ 'bg-neutral-200': $route.path === link }">
+            <SfListItem
+              v-else
+              :tag="NuxtLink"
+              :to="link"
+              :class="{ 'bg-neutral-200': $route.path === link }"
+              data-testid="account-dropdown-list-item"
+            >
               {{ $t(label) }}
             </SfListItem>
           </li>
@@ -122,21 +135,19 @@ import {
 } from '@storefront-ui/vue';
 import { DefaultLayoutProps } from '~/layouts/types';
 
-const { isOpen: isAccountDropdownOpen, toggle: accountDropdownToggle } = useDisclosure();
-const { isOpen: isSearchModalOpen, open: searchModalOpen, close: searchModalClose } = useDisclosure();
-
 defineProps<DefaultLayoutProps>();
 
+const { isOpen: isAccountDropdownOpen, toggle: accountDropdownToggle } = useDisclosure();
+const { isOpen: isSearchModalOpen, open: searchModalOpen, close: searchModalClose } = useDisclosure();
 const { data: cart } = useCart();
 const { fetchCustomer, data: account } = useCustomer();
+usePageTitle();
 
 onMounted(async () => {
   await nextTick();
   await fetchCustomer();
 });
-usePageTitle();
 
-const NuxtLink = resolveComponent('NuxtLink');
 const cartLineItemsCount = computed(
   () => cart.value?.entries?.reduce((total, { quantity }) => (quantity ? total + quantity : total), 0) ?? 0,
 );
@@ -158,4 +169,5 @@ const accountDropdown = [
     link: paths.home,
   },
 ];
+const NuxtLink = resolveComponent('NuxtLink');
 </script>

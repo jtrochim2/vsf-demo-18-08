@@ -15,11 +15,11 @@
 
 <script setup lang="ts">
 import { SfSelect } from '@storefront-ui/vue';
-import { CategorySortingProps, SortingEmits } from './types';
-
-defineEmits<SortingEmits>();
+import type { CategorySortingProps, SortingEmits } from '~/components/CategorySorting/types';
 
 const props = defineProps<CategorySortingProps>();
+defineEmits<SortingEmits>();
+
 const { options, selectedOption } = toRefs(props);
 const selected = ref(selectedOption?.value);
 </script>

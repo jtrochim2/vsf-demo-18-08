@@ -1,4 +1,4 @@
-import { Product } from '@vsf-enterprise/sapcc-types';
+import type { Product } from '@vsf-enterprise/sapcc-types';
 import { mount } from '@vue/test-utils';
 import PurchaseCard from '~/components/ui/PurchaseCard/PurchaseCard.vue';
 

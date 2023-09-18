@@ -35,11 +35,10 @@
     </UiModal>
   </div>
 </template>
-<script lang="ts" setup>
+<script setup lang="ts">
 import { SfButton, SfIconClose, useDisclosure } from '@storefront-ui/vue';
 
 const { isOpen, open, close } = useDisclosure();
-
 const cart = ref({
   customerEmail: '',
 });

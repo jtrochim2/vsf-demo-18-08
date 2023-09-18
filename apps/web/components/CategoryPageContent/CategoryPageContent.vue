@@ -70,10 +70,6 @@ import { SfButton, SfIconTune, useDisclosure } from '@storefront-ui/vue';
 import { whenever } from '@vueuse/core';
 import type { CategoryPageContentProps } from '~/components/CategoryPageContent/types';
 
-const {
-  public: { NUXT_PUBLIC_MAX_VISIBLE_CATEGORIES },
-} = useRuntimeConfig();
-
 const props = withDefaults(defineProps<CategoryPageContentProps>(), {
   itemsPerPage: 24,
   showEmptyState: false,
@@ -81,8 +77,12 @@ const props = withDefaults(defineProps<CategoryPageContentProps>(), {
 });
 defineEmits<(e: 'update:currentPage', currentPage: number) => number>();
 
+const {
+  public: { NUXT_PUBLIC_MAX_VISIBLE_CATEGORIES },
+} = useRuntimeConfig();
 const { isOpen, open, close } = useDisclosure();
 const { isTablet, isDesktop } = useBreakpoints();
+
 const maxVisiblePages = computed(() => (isDesktop.value ? Number(NUXT_PUBLIC_MAX_VISIBLE_CATEGORIES) : 1));
 
 if (!import.meta.env.SSR) {

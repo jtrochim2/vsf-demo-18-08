@@ -59,7 +59,7 @@
   </NuxtLayout>
 </template>
 
-<script lang="ts" setup>
+<script setup lang="ts">
 import { SfButton, SfLink } from '@storefront-ui/vue';
 import { PaymentMethod } from '~/components/CheckoutPayment/types';
 
@@ -67,9 +67,11 @@ definePageMeta({
   layout: false,
 });
 
-const NuxtLink = resolveComponent('NuxtLink');
 const { data: cart } = useCart();
 const { data: shippingMethods, getShippingMethods } = useCartShippingMethods();
+
 await getShippingMethods();
+
 const activePayment = ref<PaymentMethod>(PaymentMethod.CreditCard);
+const NuxtLink = resolveComponent('NuxtLink');
 </script>

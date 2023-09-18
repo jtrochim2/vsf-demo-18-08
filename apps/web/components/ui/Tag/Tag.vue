@@ -11,8 +11,7 @@
     <slot />
   </div>
 </template>
-<script lang="ts" setup>
-import { computed } from 'vue';
+<script setup lang="ts">
 import { type TagProps, TagSize } from '~/components/ui/Tag/types';
 
 const props = withDefaults(defineProps<TagProps>(), {
@@ -22,7 +21,6 @@ const props = withDefaults(defineProps<TagProps>(), {
 });
 
 const sizeClasses = computed(() => (props.size === TagSize.sm ? 'text-xs p-1 gap-1' : 'text-sm p-1.5 gap-1.5'));
-
 const getVariantClasses = computed(() => {
   switch (props.variant) {
     case 'secondary': {
