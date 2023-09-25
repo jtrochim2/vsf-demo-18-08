@@ -2,9 +2,8 @@ import { contentfulModule, ContentfulModuleType } from '@vsf-enterprise/contentf
 import { sapccModule, SAPCCModuleType } from '@vsf-enterprise/sapcc-sdk';
 import { initSDK, buildModule } from '@vue-storefront/sdk';
 import { type SdkModule, sdkModule } from '@vue-storefront/storefront-boilerplate-sdk';
-import { createSharedComposable } from '@vueuse/core';
 
-export const useSdk = createSharedComposable(() => {
+export const useSdk = () => {
   const config = useRuntimeConfig();
   const { NUXT_PUBLIC_SDK_SAPCC_API_URL, NUXT_PUBLIC_SDK_SAPCC_SSR_API_URL, NUXT_PUBLIC_SDK_CNTF_API_URL } =
     config.public;
@@ -21,4 +20,4 @@ export const useSdk = createSharedComposable(() => {
   };
 
   return initSDK<typeof sdkConfig>(sdkConfig);
-});
+};
