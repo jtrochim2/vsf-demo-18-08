@@ -30,6 +30,7 @@ jobs:
           NPM_PASS: ${{ secrets.NPM_PASS }}
           NPM_USER: ${{ secrets.NPM_USER }}
           NPM_REGISTRY: 'https://registrynpm.storefrontcloud.io'
+          DT_PAAS_TOKEN: ${{ secrets.DT_PAAS_TOKEN }}
 
       - name: Build and publish docker image (middleware)
         uses: elgohr/Publish-Docker-Github-Action@master
