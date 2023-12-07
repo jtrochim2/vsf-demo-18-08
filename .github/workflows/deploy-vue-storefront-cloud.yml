@@ -24,7 +24,7 @@ jobs:
           password: ${{ secrets.CLOUD_PASSWORD }}
           dockerfile: .vuestorefrontcloud/docker/Dockerfile
           buildoptions: '--compress'
-          buildargs: NPM_EMAIL,NPM_PASS,NPM_USER,NPM_REGISTRY
+          buildargs: NPM_EMAIL,NPM_PASS,NPM_USER,NPM_REGISTRY,DT_PAAS_TOKEN
         env:
           NPM_EMAIL: ${{ secrets.NPM_EMAIL }}
           NPM_PASS: ${{ secrets.NPM_PASS }}
