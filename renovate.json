@@ -1,0 +1,15 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "local>vuestorefront/.github:renovate-config"
+  ],
+  "hostRules": [
+    {
+      "matchHost": "https://registrynpm.storefrontcloud.io/",
+      "hostType": "npm",
+      "encrypted": {
+        "token": "wcFMA/xDdHCJBTolAQ//dLXVkP3aeKyeJx5xGxcEIEwBdv0At/hIsZTvLNnkxZ6ymJrBSv2nhB9P3RJRwvLCBIOwuBIb+GT2o/y4UvEfLxUwKpgrpn3ajW3t6I1mciJXuHNaLAvVjNQiqSE+h66WVQmymy4oGylQojmTsjuc6bZZd13czzUaVFZzY+uoc9ieu4yuIJEy/LlKCUemUS3bSeGA9NbRaaGNk23akZ6Z5qRhGAzGNipW+FaKD0oPMktSwIyHphNX5ahO1uSgy93pnTmusPBwtvKv30g09a00Z/q2DCc8ViVApFLft1f/6tuLevTuewRdX5qc7rTsU3wuDbM4vTJCQqdKuXEmqxcLryr5D7NOXJvv7SSTHZwZcOr6oMM0YLLKPjP+GK19p21oDEW+589qfJnDL4K6xpQtaZNmKfLHUR8VjOLibgwG+md3DX0l2yyM6diifr/BxZo19r+8mELyZ1dqlHfGKVMjq2IlKmoF2Bkw/QfNo1UXNCRqz9OtxXTTw3d9e5BEeYMAw8W7AbN3tfmYK7ZhlMzIVCaq5KdgjNVgSVGvy5oP0AEpttflKr2fTiwfdq0BScua3u0ILJ9tSEQCXdpAWx1lD8Muwwvsw8+HnQUDkjF4SpxM9os8y72bkYGcv7tJNwbaoafZjlXurSSbW65pxHoi+sTXEkGU7ZhK4y33V4nrhdXSwBQB1jD6D7Wro+ETGo1SG7IigzbCcJkBYyaYb5DfRa+a58JTI63kz9ZUECp986iprmUAnzfInlD3nHLFiacjPFhCnLd68e9WmxjkKBHnpbOb5xbq30nfy1qBhugkmhswsAZic851CDdMi7HMIJAG2yUHgbO5AI0zPMLkx87yoartpEtWw/DbP44odDp7ShpoE2s8HFRpXlzT5ZfxxAjww/mqKPG5BuKkpk6h+Ik6CCHhVdxNfuTcrE6pWV3D9yz3ruwUMuUk7bjWyyLQnXDaEiI4Lr2C4Q"
+      }
+    }
+  ]
+}
